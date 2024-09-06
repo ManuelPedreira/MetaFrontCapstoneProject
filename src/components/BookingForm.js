@@ -1,24 +1,18 @@
 import { useEffect, useState } from "react";
 
-function padTo2Digits(num) {
-  return num.toString().padStart(2, "0");
-}
-
-function formatDate(date) {
-  return [date.getFullYear(), padTo2Digits(date.getMonth() + 1), padTo2Digits(date.getDate())].join(
-    "-"
-  );
-}
-
-const BookingForm = ({ availableTimes, bookTable }) => {
-  const [date, setDate] = useState(formatDate(new Date(Date.now())));
+const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : "");
   const [guests, setGuests] = useState(2);
   const [occasion, setOccasion] = useState("Birthday");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    bookTable(time);
+    bookTable({
+      date,
+      time,
+      guests,
+      occasion,
+    });
   };
 
   useEffect(() => {
@@ -31,8 +25,9 @@ const BookingForm = ({ availableTimes, bookTable }) => {
       <input
         type="date"
         id="res-date"
-        value={date}
-        onChange={({ target }) => setDate(target.value)}
+        min={new Date().toISOString().split("T")[0]}
+        value={date.toISOString().split("T")[0]}
+        onChange={({ target }) => onDateChange(new Date(target.value))}
       />
       <label htmlFor="res-time">Choose time</label>
       <select id="res-time" value={time} onChange={({ target }) => setTime(target.value)}>

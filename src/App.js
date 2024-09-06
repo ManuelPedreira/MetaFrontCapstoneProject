@@ -1,12 +1,7 @@
 import "./App.css";
 import BookingForm from "./components/BookingForm";
-import { useReducer } from "react";
-
-const initializeTimes = () => {
-  return {
-    availableTimes: ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
-  };
-};
+import { fetchAPI, submitAPI } from "./components/API";
+import { useEffect, useReducer, useState } from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,13 +20,35 @@ const reducer = (state, action) => {
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {}, initializeTimes);
+  const [date, setDate] = useState(new Date());
+  const [state, dispatch] = useReducer(reducer, { availableTimes: [] });
 
-  const updateTimes = (selectedTime) => {
-    dispatch({ type: "removeTime", payload: selectedTime });
+  const updateTimes = async (formData) => {
+    dispatch({ type: "removeTime", payload: formData.time });
+    return await submitAPI(formData);
   };
 
-  return <BookingForm availableTimes={state.availableTimes} bookTable={updateTimes} />;
+  const initializeTimes = async () => {
+    try {
+      const payload = await fetchAPI(date);
+      dispatch({ type: "initializeHours", payload });
+    } catch (error) {
+      console.error("Error fetching available times:", error);
+    }
+  };
+
+  useEffect(() => {
+    initializeTimes();
+  }, [date]);
+
+  return (
+    <BookingForm
+      availableTimes={state.availableTimes}
+      bookTable={updateTimes}
+      date={date}
+      onDateChange={setDate}
+    />
+  );
 }
 
 export default App;
