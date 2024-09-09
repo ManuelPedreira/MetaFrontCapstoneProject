@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : "");
   const [guests, setGuests] = useState(2);
-  const [occasion, setOccasion] = useState("Birthday");
+  const [occasion, setOccasion] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -43,14 +43,15 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
         max="10"
         id="guests"
         value={guests}
-        onChange={({ target }) => setGuests(target.value)}
+        onChange={({ target }) => setGuests(Number(target.value))}
       />
       <label htmlFor="occasion">Occasion</label>
       <select id="occasion" value={occasion} onChange={({ target }) => setOccasion(target.value)}>
+        <option selected></option>
         <option>Birthday</option>
         <option>Anniversary</option>
       </select>
-      <input type="submit" value="Make Your reservation" />
+      <input type="submit" value="Make Your reservation" disabled={!availableTimes?.length} />
     </form>
   );
 };

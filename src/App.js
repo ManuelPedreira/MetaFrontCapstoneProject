@@ -1,53 +1,44 @@
 import "./App.css";
+import { useBooking } from "./api/BookingProvider";
 import BookingForm from "./components/BookingForm";
-import { fetchAPI, submitAPI } from "./components/API";
-import { useEffect, useReducer, useState } from "react";
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "initializeHours": {
-      return {
-        availableTimes: action.payload,
-      };
-    }
-    case "removeTime":
-      return {
-        availableTimes: state.availableTimes.filter((value) => value !== action.payload),
-      };
-    default:
-      return state;
-  }
-};
+import {useEffect, useState } from "react";
 
 function App() {
-  const [date, setDate] = useState(new Date());
-  const [state, dispatch] = useReducer(reducer, { availableTimes: [] });
+  const { bookingList, saveBooking, getHours } = useBooking();
+  const [date, setDate] = useState(()=> {
+    const actualDate = new Date();
+    actualDate.setUTCHours(0,0,0,0);
+    return actualDate;
+  });
+  const [hours, setHours] = useState();
 
-  const updateTimes = async (formData) => {
-    dispatch({ type: "removeTime", payload: formData.time });
-    return await submitAPI(formData);
-  };
-
-  const initializeTimes = async () => {
-    try {
-      const payload = await fetchAPI(date);
-      dispatch({ type: "initializeHours", payload });
-    } catch (error) {
-      console.error("Error fetching available times:", error);
-    }
+  const bookTable = (formData) => {
+    saveBooking(formData);
   };
 
   useEffect(() => {
-    initializeTimes();
-  }, [date]);
+    getHours(date).then((newHours) => setHours(newHours));
+  }, [date, getHours]);
 
   return (
-    <BookingForm
-      availableTimes={state.availableTimes}
-      bookTable={updateTimes}
-      date={date}
-      onDateChange={setDate}
-    />
+    <>
+      <BookingForm
+        availableTimes={hours}
+        bookTable={bookTable}
+        date={date}
+        onDateChange={setDate}
+      />
+      {
+        <ul>
+          {bookingList.map((reservation, index) => (
+            <li key={index}>{`${reservation.date.toISOString().split("T")[0]} at ${
+              reservation.time
+            } for ${reservation.guests} guests. ${reservation.occasion}`}</li>
+          ))}
+        </ul>
+      }
+    </>
   );
 }
 
