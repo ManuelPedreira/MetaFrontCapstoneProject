@@ -1,53 +1,53 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import BookingForm from "./components/BookingForm";
-import { fetchAPI, submitAPI } from "./components/API";
-import { useEffect, useReducer, useState } from "react";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "initializeHours": {
-      return {
-        availableTimes: action.payload,
-      };
-    }
-    case "removeTime":
-      return {
-        availableTimes: state.availableTimes.filter((value) => value !== action.payload),
-      };
-    default:
-      return state;
-  }
-};
+import useBooking from "./hooks/useBooking";
+import ConfirmedBooking from "./components/ConfirmedBooking";
 
 function App() {
-  const [date, setDate] = useState(new Date());
-  const [state, dispatch] = useReducer(reducer, { availableTimes: [] });
+  const { state, updateTimes, date, setDate, storedData } = useBooking();
 
-  const updateTimes = async (formData) => {
-    dispatch({ type: "removeTime", payload: formData.time });
-    return await submitAPI(formData);
-  };
-
-  const initializeTimes = async () => {
-    try {
-      const payload = await fetchAPI(date);
-      dispatch({ type: "initializeHours", payload });
-    } catch (error) {
-      console.error("Error fetching available times:", error);
-    }
-  };
-
-  useEffect(() => {
-    initializeTimes();
-  }, [date]);
+  console.log("test")
 
   return (
-    <BookingForm
-      availableTimes={state.availableTimes}
-      bookTable={updateTimes}
-      date={date}
-      onDateChange={setDate}
-    />
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <BookingForm
+                availableTimes={state.availableTimes}
+                bookTable={updateTimes}
+                date={date}
+                onDateChange={setDate}
+              />
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Hour</th>
+                    <th>Guests</th>
+                    <th>Occcasion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {storedData?.map((item, index) => (
+                    <tr key={index}>
+                      <th>{item.date}</th>
+                      <th>{item.time}</th>
+                      <th>{item.guests}</th>
+                      <th>{item.occasion}</th>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          }
+        ></Route>
+        <Route path="/confirm" element={<ConfirmedBooking />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

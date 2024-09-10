@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : "");
   const [guests, setGuests] = useState(2);
   const [occasion, setOccasion] = useState("Birthday");
+  const navigate = useNavigate();
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -12,6 +14,8 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
       time,
       guests,
       occasion,
+    }).then((response) => {
+      if (response) navigate("/confirm");
     });
   };
 
