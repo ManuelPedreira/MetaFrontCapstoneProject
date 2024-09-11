@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : "");
   const [guests, setGuests] = useState(2);
-  const [occasion, setOccasion] = useState("Birthday");
+  const [occasion, setOccasion] = useState("");
   const navigate = useNavigate();
 
   const onSubmit = (event) => {
@@ -51,10 +51,11 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
       />
       <label htmlFor="occasion">Occasion</label>
       <select id="occasion" value={occasion} onChange={({ target }) => setOccasion(target.value)}>
+        <option></option>
         <option>Birthday</option>
         <option>Anniversary</option>
       </select>
-      <input type="submit" value="Make Your reservation" />
+      <input type="submit" value="Make Your reservation" disabled={!availableTimes?.length} />
     </form>
   );
 };

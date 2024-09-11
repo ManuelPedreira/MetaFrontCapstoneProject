@@ -24,7 +24,6 @@ const useBooking = () => {
     return now;
   });
   const [storedData, setStoredData] = useState([]);
-
   const [state, dispatch] = useReducer(reducer, { availableTimes: [] });
 
   const updateTimes = useCallback(async (formData) => {
@@ -36,15 +35,14 @@ const useBooking = () => {
     try {
       const payload = await fetchAPI(date);
       dispatch({ type: "initializeHours", payload });
-      loadData();
     } catch (error) {
       console.error("Error fetching available times:", error);
     }
   }, []);
 
-  const loadData = () => {
+  useEffect(() => {
     fetchAllAPI().then((data) => setStoredData(data));
-  };
+  }, [state]);
 
   useEffect(() => {
     initializeTimes(date);
