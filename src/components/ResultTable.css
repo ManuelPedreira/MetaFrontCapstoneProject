@@ -1,0 +1,11 @@
+table {
+  font-size: small;
+  text-align: center;
+  color: #333
+}
+
+th {
+  color: #495e57;
+  padding-bottom: 0.3rem;
+}
+

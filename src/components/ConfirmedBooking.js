@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import "./ConfirmedBooking.css"
 
 const ConfirmedBooking = () => {
   return (
-    <div>
+    <div class="confirm">
       <h1>Booking Confirmed!</h1>
-      <p>Thank you for your reservation. We look forward to seeing you!</p>
+      <p>Thank you for your reservation.</p>
+      <p>We look forward to seeing you!</p>
       <Link to="/">
-        <button>Accept</button>
+        <button aria-label="On Click">Accept</button>
       </Link>
     </div>
   );

@@ -1,3 +1,5 @@
+import "./ResultTable.css"
+
 const ResultTable = ({storedData}) => {
 
   return (
@@ -13,10 +15,10 @@ const ResultTable = ({storedData}) => {
       <tbody>
         {storedData?.map((item, index) => (
           <tr key={index}>
-            <th>{item.date}</th>
-            <th>{item.time}</th>
-            <th>{item.guests}</th>
-            <th>{item.occasion}</th>
+            <td>{item.date}</td>
+            <td>{item.time}</td>
+            <td>{item.guests}</td>
+            <td>{item.occasion}</td>
           </tr>
         ))}
       </tbody>

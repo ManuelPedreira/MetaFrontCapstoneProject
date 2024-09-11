@@ -24,8 +24,8 @@ function App() {
               {storedData && <ResultTable storedData={storedData} />}
             </>
           }
-        ></Route>
-        <Route path="/confirm" element={<ConfirmedBooking />}></Route>
+        />
+        <Route path="/confirm" element={<ConfirmedBooking />} />
       </Routes>
     </BrowserRouter>
   );

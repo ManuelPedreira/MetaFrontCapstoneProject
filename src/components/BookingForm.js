@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./BookingForm.css";
 
 const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   const [time, setTime] = useState(availableTimes && availableTimes[0] ? availableTimes[0] : "");
@@ -24,7 +25,7 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
   }, [availableTimes]);
 
   return (
-    <form style={{ display: "grid", maxWidth: "200px", gap: "20px" }} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} aria-label="Booking Form for Table Reservation">
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
@@ -32,9 +33,15 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
         min={new Date().toISOString().split("T")[0]}
         value={date.toISOString().split("T")[0]}
         onChange={({ target }) => onDateChange(new Date(target.value))}
+        aria-label="Available booking dates"
       />
       <label htmlFor="res-time">Choose time</label>
-      <select id="res-time" value={time} onChange={({ target }) => setTime(target.value)}>
+      <select
+        id="res-time"
+        value={time}
+        onChange={({ target }) => setTime(target.value)}
+        aria-label="Available booking times"
+      >
         {availableTimes?.map((value) => (
           <option key={value}>{value}</option>
         ))}
@@ -46,16 +53,24 @@ const BookingForm = ({ availableTimes, bookTable, date, onDateChange }) => {
         min="1"
         max="10"
         id="guests"
-        value={guests}
+        value={1 > Number(guests) ? 1 : Number(guests) > 10 ? 10 : Number(guests)}
         onChange={({ target }) => setGuests(target.value)}
+        aria-label="Select number of guests"
       />
       <label htmlFor="occasion">Occasion</label>
-      <select id="occasion" value={occasion} onChange={({ target }) => setOccasion(target.value)}>
-        <option></option>
-        <option>Birthday</option>
-        <option>Anniversary</option>
+      <select
+        id="occasion"
+        value={occasion}
+        onChange={({ target }) => setOccasion(target.value)}
+        aria-label="Select occasion"
+      >
+        <option value="" style={{color:"#666"}}>Select</option>
+        <option value="Birthday">Birthday</option>
+        <option value="Anniversary">Anniversary</option>
       </select>
-      <input type="submit" value="Make Your reservation" disabled={!availableTimes?.length} />
+      <button type="submit" disabled={!availableTimes?.length} aria-label="On Click">
+        Make Your reservation
+      </button>
     </form>
   );
 };
