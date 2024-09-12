@@ -1,19 +1,15 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-import { fetchAllAPI, fetchAPI, submitAPI } from "../components/API";
+import { fetchAllAPI, fetchAPI, submitAPI } from "../API/API";
 
-const reducer = (state, action) => {
+const reducer = (previousState, action) => {
   switch (action.type) {
     case "initializeHours": {
-      return {
-        availableTimes: action.payload,
-      };
+      return action.payload;
     }
     case "removeTime":
-      return {
-        availableTimes: state.availableTimes.filter((value) => value !== action.payload),
-      };
+      return previousState.filter((value) => value !== action.payload);
     default:
-      return state;
+      return previousState;
   }
 };
 
@@ -24,7 +20,7 @@ const useBooking = () => {
     return now;
   });
   const [storedData, setStoredData] = useState([]);
-  const [state, dispatch] = useReducer(reducer, { availableTimes: [] });
+  const [availableTimes, dispatch] = useReducer(reducer, []);
 
   const updateTimes = useCallback(async (formData) => {
     dispatch({ type: "removeTime", payload: formData.time });
@@ -42,13 +38,13 @@ const useBooking = () => {
 
   useEffect(() => {
     fetchAllAPI().then((data) => setStoredData(data));
-  }, [state]);
+  }, [availableTimes]);
 
   useEffect(() => {
     initializeTimes(date);
   }, [date, initializeTimes]);
 
-  return { state, updateTimes, date, setDate, storedData };
+  return { availableTimes, updateTimes, date, setDate, storedData };
 };
 
 export default useBooking;

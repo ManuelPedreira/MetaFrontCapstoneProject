@@ -6,7 +6,7 @@ import ConfirmedBooking from "./components/ConfirmedBooking";
 import ResultTable from "./components/ResultTable";
 
 function App() {
-  const { state, updateTimes, date, setDate, storedData } = useBooking();
+  const { availableTimes, updateTimes, date, setDate, storedData } = useBooking();
 
   return (
     <BrowserRouter>
@@ -16,7 +16,7 @@ function App() {
           element={
             <>
               <BookingForm
-                availableTimes={state.availableTimes}
+                availableTimes={availableTimes}
                 bookTable={updateTimes}
                 date={date}
                 onDateChange={setDate}
