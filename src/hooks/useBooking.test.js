@@ -1,6 +1,7 @@
-import { act, renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 import { fetchAllAPI, fetchAPI, submitAPI } from "../API/API";
 import useBooking from "./useBooking";
+import { act } from "react";
 
 jest.mock("../API/API", () => ({
   fetchAPI: jest.fn(),
@@ -31,7 +32,7 @@ describe("useBooking", () => {
     
     fetchAPI.mockResolvedValue(availableTimes);
     fetchAllAPI.mockResolvedValue([]);
-    submitAPI.mockResolvedValue({ success: true });
+    submitAPI.mockResolvedValue(true);
     
     const { result } = renderHook(useBooking);
     
