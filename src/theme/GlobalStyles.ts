@@ -33,12 +33,6 @@ body {
   color: #333;
 }
 
-* {
-  line-height: 1.3rem;
-  letter-spacing: 0.02rem;
-
-}
-
 a {
   text-decoration: inherit;
 }

@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from "./routes";
 import GlobalStyles from "./theme/GlobalStyles";
-import Wrapper from "./ui/Wrapper";
+import SectionWrapper from "./ui/SectionWrapper";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 
@@ -9,14 +9,14 @@ function App() {
   const router = createBrowserRouter(routes);
 
   return (
-    <>
+    <main>
       <NavBar />
       <RouterProvider router={router} />
-      <Wrapper background>
+      <SectionWrapper background>
         <Footer />
-      </Wrapper>
+      </SectionWrapper>
       <GlobalStyles />
-    </>
+    </main>
   );
 }
 

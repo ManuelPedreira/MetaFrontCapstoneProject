@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  margin-bottom: 1rem;
   padding: 0.3rem;
   text-align: center;
   border-radius: 16px;
@@ -22,6 +21,7 @@ export const StyledButton = styled.button`
   }
 
   &:active {
+    /* outline:2px solid  #debd1a; */
     background-color: #495e57;
     color: #eee;
   }

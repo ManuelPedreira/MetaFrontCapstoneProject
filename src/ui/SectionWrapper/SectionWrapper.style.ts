@@ -4,9 +4,10 @@ type WrapperContainerProps = {
   $background?: boolean;
 };
 
-export const WrapperContainer = styled.div<WrapperContainerProps>`
+export const WrapperContainer = styled.section<WrapperContainerProps>`
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0 2rem;
+
   ${({ $background }) => $background && "color:#eee"};
   background-color: ${({ $background }) => ($background ? "#495e57" : "transparent")};
   box-sizing: border-box;
