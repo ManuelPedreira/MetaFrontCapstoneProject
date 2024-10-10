@@ -6,21 +6,17 @@ type WrapperContainerProps = {
 
 export const WrapperContainer = styled.section<WrapperContainerProps>`
   width: 100%;
-  padding: 0 2rem;
-
-  ${({ $background }) => $background && "color:#eee"};
-  background-color: ${({ $background }) => ($background ? "#495e57" : "transparent")};
   box-sizing: border-box;
+  padding: ${({ theme }) => theme.frames.section.padding};
+
+  color: ${({ $background, theme }) =>
+    $background ? theme.color.highlight.secondary : theme.color.highlight.primary};
+    
+  background-color: ${({ $background, theme }) =>
+    $background ? theme.color.primary.main : "transparent"};
 
   > * {
     margin: 0 auto;
-    max-width: 1000px;
-  }
-
-  h1 {
-    ${({ $background }) => $background && "color:#f4cf14"};
-  }
-  h3 {
-    ${({ $background }) => !$background && "color:#495e57"};
+    max-width: ${({ theme }) => theme.frames.resolution.desktop};
   }
 `;

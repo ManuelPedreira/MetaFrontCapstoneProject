@@ -1,37 +1,72 @@
 const theme = {
-  colors: {
-    common: {
-      black: "black",
-      white: "white",
-    },
+  color: {
     primary: {
       main: "#495E57",
-      text: "white",
+      detail: "#F4CE14",
+      detailDark: "#E0BA00",
+      detailDarker: "#CCAA00",
     },
     secondary: {
-      main: "rgb(126, 126, 126)",
-      text: "rgb(239, 239, 239)",
+      main: "#EE9972",
+      detail: "#FBDABB",
     },
-    button: {
-      normal: {
-        background: "#F4CE14",
-        text: "black",
-      },
-      click: {
-        background: "#495E57",
-        text: "#F5F5F5",
-      },
-      disabled: {
-        background: "#EE9972",
-        text: "black",
-      },
+    highlight: {
+      primary: "#333",
+      primaryStrong: "black",
+      secondary: "#EDEFEE",
+      secondaryStrong: "white",
+      middle: "#999",
+    },
+    background: {
+      primary: "white",
+      primarySoft: "#ebedec",
+      secondary: "black",
+      secondarySoft: "#222",
     },
   },
   radiuses: {
-    medium: 16,
+    medium: "16pt",
   },
   transitions: {
-    normal: 0.3,
+    normal: "0.3s",
+  },
+  text: {
+    title: {
+      fontFamily: "MarkaziText",
+      fontSize: "60pt",
+    },
+    subtitle: {
+      fontFamily: "MarkaziText",
+      fontSize: "40pt",
+    },
+    normal: {
+      fontFamily: "Karla",
+      fontSize: "16pt",
+    },
+    card: {
+      fontFamily: "Karla",
+      lineHeight: "1.5",
+      headFontSize: "16pt",
+      textFontSize: "14pt",
+    },
+    navigationBar: {
+      fontFamily: "Karla",
+      fontSize: "14pt",
+      fontWeight: 600,
+    },
+  },
+  frames: {
+    section: {
+      padding: "0.5rem 2rem",
+    },
+
+    resolution: {
+      desktop: "1200px",
+      phoneBreak: {
+        minWidth: "850px",
+        maxWidth: "849px",
+      },
+    },
   },
 };
 

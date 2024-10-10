@@ -17,26 +17,23 @@ const GlobalStyles = createGlobalStyle`
   color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  font-family: Karla;
 }
 
-h1,h2,h3 {
-    font-family: MarkaziText;
-}
 
 body {
   margin: 0;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  font-size: 15px;
-  color: #333;
+  
+  font-family: ${({ theme }) => theme.text.normal.fontFamily};
+  font-size: ${({ theme }) => theme.text.normal.fontSize};
+  color: ${({ theme }) => theme.color.highlight.primary};
 }
 
 a {
   text-decoration: inherit;
 }
-
 
 `;
 

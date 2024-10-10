@@ -1,5 +1,5 @@
 import Button from "../../../ui/Button/Button";
-import image from "../../../assets/restauranfood.jpg";
+import image from "/images/restauranfood.jpg";
 import {
   ImageContainer,
   PresentationContainer,

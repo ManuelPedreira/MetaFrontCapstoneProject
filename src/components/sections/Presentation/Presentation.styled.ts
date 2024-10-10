@@ -1,15 +1,19 @@
 import styled from "styled-components";
+import { DefaultTheme } from "styled-components/dist/types";
+
+const minWidth = ({ theme }: { theme: DefaultTheme }) =>  theme.frames.resolution.phoneBreak.minWidth;
+const maxWidth = ({ theme }: { theme: DefaultTheme }) =>  theme.frames.resolution.phoneBreak.maxWidth;
 
 export const PresentationContainer = styled.div`
   display: flex;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 
-  @media (min-width: 750px) {
+  @media (min-width: ${minWidth}) {
     position: relative;
-    gap: 4rem;
+    gap: 7rem;
   }
 
-  @media (max-width: 749px) {
+  @media (max-width: ${maxWidth}) {
     flex-flow: column;
     gap: 0;
   }
@@ -20,13 +24,13 @@ export const ImageContainer = styled.div`
 `;
 
 export const StyledImage = styled.div`
-  @media (min-width: 750px) {
+  @media (min-width: ${minWidth}) {
     position: absolute;
     right: 0;
     width: 350px;
   }
 
-  @media (max-width: 749px) {
+  @media (max-width: ${maxWidth}) {
     margin-top: 2rem;
   }
 
@@ -39,21 +43,25 @@ export const StyledImage = styled.div`
 `;
 
 export const PresentationTittle = styled.h1`
-  min-width: 18rem;
-  font-size: 4rem;
+  min-width: 400px;
   line-height: 3rem;
   margin: 0;
+
+  font-family: ${({ theme }) => theme.text.title.fontFamily};
+  font-size: ${({ theme }) => theme.text.title.fontSize};
+  color: ${({ theme }) => theme.color.primary.detail};
 `;
 
 export const PresentationSubtittle = styled.h3`
-  font-size: 2.5rem;
+  font-family: ${({ theme }) => theme.text.subtitle.fontFamily};
+  font-size: ${({ theme }) => theme.text.subtitle.fontSize};
   margin: 1rem 0;
 `;
 
 export const PresentationText = styled.p`
-  font-size: 1.2rem;
+  font-size: ${({ theme }) => theme.text.normal.fontSize};
 
-  @media (min-width: 750px) {
-    min-height: 7.2rem;
+  @media (min-width: ${minWidth}) {
+    min-height: 100px;
   }
 `;

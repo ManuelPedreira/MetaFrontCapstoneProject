@@ -4,8 +4,8 @@ export const NavBarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 0.5rem 1rem;
+  max-width: ${({ theme }) => theme.frames.resolution.desktop};
+  padding: ${({ theme }) => theme.frames.section.padding};
 `;
 
 export const NavigationBarContainer = styled.ul`
@@ -15,10 +15,12 @@ export const NavigationBarContainer = styled.ul`
 `;
 
 export const NatigationBarItem = styled.li`
-  font-weight: 600;
+  font-family: ${({ theme }) => theme.text.navigationBar.fontFamily};
+  font-size: ${({ theme }) => theme.text.navigationBar.fontSize};
+  font-weight: ${({ theme }) => theme.text.navigationBar.fontWeight};
 
   &:hover {
-    color: #495e57;
+    color: ${({ theme }) => theme.color.primary.main};
     cursor: pointer;
     text-decoration: underline;
   }
