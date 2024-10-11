@@ -33,6 +33,7 @@ body {
 
 a {
   text-decoration: inherit;
+  color: ${({ theme }) => theme.color.secondary.main};
 
   &:hover{
     text-decoration: underline;

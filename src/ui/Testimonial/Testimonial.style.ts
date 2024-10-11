@@ -11,7 +11,7 @@ export const TestimonialContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  @media (min-width: calc(200px*4 + 1rem*8 + 2rem*5)) {
+  @media (min-width: calc(200px*4 + 8rem + 2rem*5)) {
     flex: 0 1 200px;
   }
 `;
@@ -25,7 +25,7 @@ export const TestimonialHeader = styled.div`
 export const TestimonialName = styled.h6`
   margin: 0;
   font-family: ${({ theme }) => theme.text.card.fontFamily};
-  font-size: ${({ theme }) => theme.text.card.headFontSize};
+  font-size: ${({ theme }) => theme.text.card.textFontSize};
 `;
 
 export const TestimonialPicture = styled.img`
@@ -38,5 +38,5 @@ export const TestimonialPicture = styled.img`
 export const TestimonialText = styled.p`
   margin: 0;
   font-family: ${({ theme }) => theme.text.card.fontFamily};
-  font-size: ${({ theme }) => theme.text.card.headFontSize};
+  font-size: ${({ theme }) => theme.text.card.textFontSize};
 `;

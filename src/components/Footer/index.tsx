@@ -28,8 +28,8 @@ const Footer = () => {
           <FooterTitle>Contact</FooterTitle>
           <p>2395 Maldove Way,</p>
           <p>Chicago Illinois</p>
-          <p>(629)-243-6827</p>
-          <p>info@littlelemon.com</p>
+          <Link to="tel:(629)2436827">(629)-243-6827</Link>
+          <Link to="mailto:info@littlelemon.com" >info@littlelemon.com</Link>
         </FooterColumn>
         <FooterColumn>
           <FooterTitle>Connect</FooterTitle>

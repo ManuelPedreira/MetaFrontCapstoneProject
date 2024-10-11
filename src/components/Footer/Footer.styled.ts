@@ -21,8 +21,7 @@ export const FooterContainer = styled.div`
     justify-content: space-evenly;
   }
 
-  p,
-  a {
+  p,a {
     white-space: nowrap;
     margin: 0.5rem 0;
     color: ${({ theme }) => theme.color.highlight.secondary};
@@ -41,8 +40,8 @@ export const FooterColumn = styled.div`
     max-width: 250px;
 
     @media (max-width: 600px) {
-      flex: 1 1 150px;
-      max-width: 1500px;
+      flex: 1 1 160px;
+      max-width: 160px;
     }
   }
 `;

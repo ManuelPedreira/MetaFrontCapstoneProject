@@ -5,12 +5,14 @@ export const FoodCardContainer = styled.div`
   flex-direction: column;
 
   flex: 1 1 300px;
-  min-width: 300px;
-
+  
   background-color: ${({ theme }) => theme.color.background.primarySoft};
   border-radius: ${({ theme }) => theme.radiuses.medium};
   overflow: hidden;
-
+  
+  @media (min-width: ${({theme}) => theme.frames.resolution.phoneBreak.minWidth}) {
+    min-width: 300px;
+  }
   
   @media (min-width: calc(300px*3 + 2rem*4)) {
     max-width: 330px;

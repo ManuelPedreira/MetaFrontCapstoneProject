@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/Logo.svg";
 import { navList } from "../../types/navigationPages";
 import { NatigationBarItem, NavBarContainer, NavigationBarContainer } from "./NavBar.styled";
@@ -10,7 +11,9 @@ const NavBar = () => {
       <nav>
         <NavigationBarContainer>
           {navList.map((item, index) => (
-            <NatigationBarItem key={index}>{item.name}</NatigationBarItem>
+            <Link to={item.route} key={index}>
+              <NatigationBarItem>{item.name}</NatigationBarItem>
+            </Link>
           ))}
         </NavigationBarContainer>
       </nav>

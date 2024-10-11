@@ -10,7 +10,7 @@ export const PresentationContainer = styled.div`
 
   @media (min-width: ${minWidth}) {
     position: relative;
-    gap: 7rem;
+    gap: 9rem;
   }
 
   @media (max-width: ${maxWidth}) {
@@ -20,7 +20,7 @@ export const PresentationContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  min-width: 350px;
+  min-width: 300px;
 `;
 
 export const StyledImage = styled.div`
@@ -39,11 +39,10 @@ export const StyledImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 16px;
+  border-radius: ${({theme})=> theme.radiuses.medium};
 `;
 
 export const PresentationTittle = styled.h1`
-  min-width: 400px;
   line-height: 3rem;
   margin: 0;
 

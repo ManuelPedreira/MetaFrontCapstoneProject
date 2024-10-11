@@ -18,6 +18,7 @@ export const NatigationBarItem = styled.li`
   font-family: ${({ theme }) => theme.text.navigationBar.fontFamily};
   font-size: ${({ theme }) => theme.text.navigationBar.fontSize};
   font-weight: ${({ theme }) => theme.text.navigationBar.fontWeight};
+  color: ${({ theme }) => theme.color.highlight.primary};
 
   &:hover {
     color: ${({ theme }) => theme.color.primary.main};

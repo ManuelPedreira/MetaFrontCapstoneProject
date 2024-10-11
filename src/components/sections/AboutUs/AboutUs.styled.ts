@@ -44,10 +44,11 @@ export const AboutUsImageWrapper = styled.div`
   aspect-ratio: 3/4;
   min-width: 370px;
   height: 350px;
-
+  
   @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
     aspect-ratio: 4/3;
     height: auto;
+    min-width: 200px;
     width: 100%;
   }
 `;

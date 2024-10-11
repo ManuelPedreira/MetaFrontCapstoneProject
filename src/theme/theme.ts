@@ -63,8 +63,8 @@ const theme = {
     resolution: {
       desktop: "1200px",
       phoneBreak: {
-        minWidth: "850px",
-        maxWidth: "849px",
+        minWidth: "799px",
+        maxWidth: "798px",
       },
     },
   },
