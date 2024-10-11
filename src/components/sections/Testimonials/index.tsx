@@ -1,5 +1,5 @@
 import Testimonial from "../../../ui/Testimonial";
-import { TestimonialsTitle, TestimonialWrapper } from "./Testimonials.style";
+import { TestimonialsTitle, TestimonialsWrapper, TestimonialWrapper } from "./Testimonials.style";
 
 type testimonialType = {
   name: string;
@@ -33,14 +33,14 @@ const testimonalList: testimonialType[] = [
 
 const Testimonials = () => {
   return (
-    <div>
+    <TestimonialsWrapper>
       <TestimonialsTitle>Testimonials</TestimonialsTitle>
       <TestimonialWrapper>
         {testimonalList.map(({ name, review, image }) => (
           <Testimonial key={name} name={name} review={review} image={image} />
         ))}
       </TestimonialWrapper>
-    </div>
+    </TestimonialsWrapper>
   );
 };
 

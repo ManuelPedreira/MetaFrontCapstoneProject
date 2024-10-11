@@ -13,12 +13,12 @@ export const FoodCardContainer = styled.div`
 
   
   @media (min-width: calc(300px*3 + 2rem*4)) {
-    max-width: 350px;
+    max-width: 330px;
     transition: all 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1.03);
-      box-shadow: 3px 3px 10px 0px ${({theme}) => theme.color.highlight.middle};
+      box-shadow: 3px 3px 15px -5px ${({theme}) => theme.color.highlight.middle};
     }
   }
 

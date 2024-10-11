@@ -33,6 +33,11 @@ body {
 
 a {
   text-decoration: inherit;
+
+  &:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 `;

@@ -1,4 +1,10 @@
-import { TestimonialContainer, TestimonialPicture } from "./Testimonial.style";
+import {
+  TestimonialContainer,
+  TestimonialHeader,
+  TestimonialName,
+  TestimonialPicture,
+  TestimonialText,
+} from "./Testimonial.style";
 
 type TestimonialProps = {
   name: string;
@@ -9,9 +15,11 @@ type TestimonialProps = {
 const Testimonial = ({ name, review, image }: TestimonialProps) => {
   return (
     <TestimonialContainer>
-      <TestimonialPicture src={image}/>
-      <h6>{name}</h6>
-      <p>{review}</p>
+      <TestimonialHeader>
+        <TestimonialPicture src={image} />
+        <TestimonialName>{name}</TestimonialName>
+      </TestimonialHeader>
+      <TestimonialText>{review}</TestimonialText>
     </TestimonialContainer>
   );
 };

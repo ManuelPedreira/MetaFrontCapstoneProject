@@ -1,28 +1,44 @@
+import { Link } from "react-router-dom";
 import { navList } from "../../types/navigationPages";
+import {
+  FooterColumn,
+  FooterContainer,
+  FooterLogo,
+  FooterTitle,
+  FooterWrapper,
+} from "./Footer.styled";
+import logo from "/images/logo-vertical-white.png";
 
 const Footer = () => {
   return (
-    <footer>
-      <div>
-        <h3>Navigation</h3>
-        {navList.map((item, index) => (
-            <p key={index}>{item.name}</p>
+    <FooterWrapper>
+      <FooterContainer>
+        <FooterColumn>
+          <FooterLogo src={logo} />
+        </FooterColumn>
+        <FooterColumn>
+          <FooterTitle>Navigation</FooterTitle>
+          {navList.map((item, index) => (
+            <Link to={item.route} key={index}>
+              {item.name}
+            </Link>
           ))}
-      </div>
-      <div>
-        <h3>Contact</h3>
-        <p>2395 Maldove Way,</p>
-        <p>Chicago Illinois</p>
-        <p>(629)-243-6827</p>
-        <p>info@littlelemon.com</p>
-      </div>
-      <div>
-        <h3>Connect</h3>
-        <p>Facebook</p>
-        <p>Instagram</p>
-        <p>Join us!</p>
-      </div>
-    </footer>
+        </FooterColumn>
+        <FooterColumn>
+          <FooterTitle>Contact</FooterTitle>
+          <p>2395 Maldove Way,</p>
+          <p>Chicago Illinois</p>
+          <p>(629)-243-6827</p>
+          <p>info@littlelemon.com</p>
+        </FooterColumn>
+        <FooterColumn>
+          <FooterTitle>Connect</FooterTitle>
+          <a>Facebook</a>
+          <a>Instagram</a>
+          <a>Join us!</a>
+        </FooterColumn>
+      </FooterContainer>
+    </FooterWrapper>
   );
 };
 

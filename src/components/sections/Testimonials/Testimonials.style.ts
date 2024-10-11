@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const TestimonialsWrapper = styled.div`
+  padding: 1rem 0 3rem 0;
+`;
+
 export const TestimonialsTitle = styled.h1`
   font-family: ${({ theme }) => theme.text.subtitle.fontFamily};
   font-size: ${({ theme }) => theme.text.subtitle.fontSize};
@@ -10,6 +14,6 @@ export const TestimonialsTitle = styled.h1`
 export const TestimonialWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-bottom: 2rem;
+  flex-wrap: wrap;
   gap: 2rem;
 `;
