@@ -20,6 +20,7 @@ const theme = {
     background: {
       primary: "white",
       primarySoft: "#ebedec",
+      primaryTransparent: "rgba(255, 255, 255, 0.9)",
       secondary: "black",
       secondarySoft: "#222",
     },
