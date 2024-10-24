@@ -1,12 +1,10 @@
 import logo from "../../assets/Logo.svg";
-import burger from "../../assets/icon _hamburger menu.svg";
-import basket from "../../assets/Basket.svg";
 import { Link } from "react-router-dom";
-import { navList } from "../../types/navigationPages";
+import { routesList } from "../../types/routesList";
 import {
   NatigationBarItem,
   NavBarContainer,
-  NavigationIconHover,
+  NavigationIcon,
   NavigationIconsSmall,
   NavigationItemsContainer,
   NavigationItemsSmall,
@@ -14,9 +12,11 @@ import {
   NavigationWrapperSmall,
 } from "./NavBar.styled";
 import { useState } from "react";
+import BasketSVG from "../../ui/svg/BasketSVG";
+import BurgerSVG from "../../ui/svg/BurgerSVG";
 
 const NavBar = () => {
-  const [visibleMenu, setVisibleMenu] = useState(false);
+  const [isVisibleMenu, setIsVisibleMenu] = useState(false);
 
   return (
     <NavBarContainer>
@@ -25,33 +25,35 @@ const NavBar = () => {
 
         <nav>
           <NavigationItemsContainer>
-            {navList.map((item, index) => (
+            {routesList.map((item, index) => (
               <Link to={item.route} key={index}>
-                <NatigationBarItem>{item.name}</NatigationBarItem>
+                <NatigationBarItem $menuOpen={true}>{item.name}</NatigationBarItem>
               </Link>
             ))}
           </NavigationItemsContainer>
         </nav>
       </NavigationWrapperBig>
 
-      <NavigationWrapperSmall>
+      <NavigationWrapperSmall $menuOpen={isVisibleMenu}>
         <NavigationIconsSmall>
-          <NavigationIconHover src={burger} onClick={() => setVisibleMenu(!visibleMenu)} />
+          <NavigationIcon onClick={() => setIsVisibleMenu(!isVisibleMenu)} $menuOpen={isVisibleMenu}>
+            <BurgerSVG />
+          </NavigationIcon>
           <img src={logo} />
-          <NavigationIconHover src={basket} />
+          <NavigationIcon>
+            <BasketSVG />
+          </NavigationIcon>
         </NavigationIconsSmall>
 
-        {visibleMenu && (
-          <NavigationItemsSmall>
-            <NavigationItemsContainer>
-              {navList.map((item, index) => (
-                <Link to={item.route} key={index}>
-                  <NatigationBarItem>{item.name}</NatigationBarItem>
-                </Link>
-              ))}
-            </NavigationItemsContainer>
-          </NavigationItemsSmall>
-        )}
+        <NavigationItemsSmall $menuOpen={isVisibleMenu}>
+          <NavigationItemsContainer>
+            {routesList.map((item, index) => (
+              <Link to={item.route} key={index} onClick={() => setIsVisibleMenu(false)}>
+                <NatigationBarItem $menuOpen={isVisibleMenu}>{item.name}</NatigationBarItem>
+              </Link>
+            ))}
+          </NavigationItemsContainer>
+        </NavigationItemsSmall>
       </NavigationWrapperSmall>
     </NavBarContainer>
   );

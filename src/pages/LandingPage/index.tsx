@@ -6,7 +6,7 @@ import Specials from "../../components/sections/Specials";
 import Testimonials from "../../components/sections/Testimonials";
 import SectionWrapper from "../../ui/SectionWrapper";
 
-const Landing = () => {
+const LandingPage = () => {
   return (
     <>
       <NavBar />
@@ -19,4 +19,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default LandingPage;

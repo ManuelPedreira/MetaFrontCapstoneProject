@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { navList } from "../../types/navigationPages";
+import { routesList } from "../../types/routesList";
 import {
   FooterColumn,
   FooterContainer,
@@ -18,7 +18,7 @@ const Footer = () => {
         </FooterColumn>
         <FooterColumn>
           <FooterTitle>Navigation</FooterTitle>
-          {navList.map((item, index) => (
+          {routesList.map((item, index) => (
             <Link to={item.route} key={index}>
               {item.name}
             </Link>
