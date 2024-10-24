@@ -6,7 +6,7 @@ const ErrorPage = () => {
   return (
     <>
       <NavBar />
-      <SectionWrapper>ERROR 404</SectionWrapper>
+      <SectionWrapper>ERROR  404</SectionWrapper>
       <Footer />
     </>
   );
