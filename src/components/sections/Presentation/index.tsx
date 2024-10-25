@@ -8,8 +8,12 @@ import {
   PresentationTittle,
   StyledImage,
 } from "./Presentation.styled";
+import { useNavigate } from "react-router-dom";
+import { getRoute } from "../../../types/routesList";
 
 const Presentation = () => {
+  const navigate = useNavigate();
+
   return (
     <PresentationContainer>
       <div>
@@ -19,7 +23,7 @@ const Presentation = () => {
           We are a family owned Mediterranean restaurant, located on Maldove Street in Chicago,
           Illionis. We focus on traditional recipes served with a modern twist.
         </PresentationText>
-        <Button>Reserve a table</Button>
+        <Button onClick={()=> navigate(getRoute("Reservations"))}>Reserve a table</Button>
       </div>
       <ImageContainer>
         <StyledImage style={{ backgroundImage: `url(${image})` }} />

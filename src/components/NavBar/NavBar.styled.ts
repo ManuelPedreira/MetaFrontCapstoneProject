@@ -61,13 +61,14 @@ export const NavigationItemsSmall = styled.nav<NavigationSmallBarProps>`
   position: absolute;
   width: 100%;
 
-  height: ${({ $menuOpen }) => ($menuOpen ? "100vh" : "0")};
-  padding: ${({ $menuOpen }) => ($menuOpen ? "1.5rem 0" : "0")};
-  background-color: ${({ theme, $menuOpen }) =>
-    $menuOpen ? theme.color.background.primary : theme.color.background.primaryTransparent};
+  height: 100vh;
+  padding: 1.5rem 0;
+  background-color: ${({ theme }) => theme.color.background.primary};
   backdrop-filter: blur(8px);
+  transition: 0.4s all linear;
 
-  transition: 0.2s all linear;
+  top: ${({ $menuOpen }) => ($menuOpen ? "50px" : "-120vh")};
+  z-index: -2;
 `;
 
 export const NavigationItemsContainer = styled.ul`
@@ -85,11 +86,11 @@ export const NatigationBarItem = styled.li<NavigationSmallBarProps>`
   font-family: ${({ theme }) => theme.text.navigationBar.fontFamily};
   font-size: ${({ theme }) => theme.text.navigationBar.fontSize};
   font-weight: ${({ theme }) => theme.text.navigationBar.fontWeight};
-  color: ${({ theme }) => theme.color.highlight.primary};  
+  color: ${({ theme }) => theme.color.highlight.primary};
   transition: 1.2s all linear;
-  
+
   ${({ $menuOpen }) => !$menuOpen && "display: none"};
-  
+
   @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
     font-size: ${({ theme }) => theme.text.normal.fontSize};
   }
