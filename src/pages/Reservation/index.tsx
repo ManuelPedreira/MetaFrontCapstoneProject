@@ -1,52 +1,73 @@
-import { DateCalendar } from "@mui/x-date-pickers";
+import { useState } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import Button from "../../ui/Button/Button";
+import Calendar from "../../ui/Calendar";
 import SectionWrapper from "../../ui/SectionWrapper";
+import { ScrollRestoration } from "react-router-dom";
+import {
+  HeaderImage,
+  PeopleHourSection,
+  ReservationWrapper,
+  ReservationSection,
+  ZoneSection,
+  SectionTittle,
+  ReservationLabel,
+  ReservationZoneLabel,
+  ReservationButton,
+  PeopleHourSelect,
+} from "./Reservation.styled";
+import headerImage from "/images/restauranfood.jpg";
 
 const ReservationPage = () => {
+  const [date, setDate] = useState(new Date());
+
   return (
     <>
+      <ScrollRestoration />
       <NavBar />
-      <SectionWrapper>
-        <h1>Reserve a table</h1>
+      <ReservationWrapper>
+        <HeaderImage src={headerImage} />
+        <ReservationSection>
+          <SectionTittle>Reserve a table</SectionTittle>
+          <Calendar value={date} onChange={(date) => setDate(date)} />
 
-        <DateCalendar disablePast={true} />
+          <PeopleHourSection>
+            <div>
+              <ReservationLabel>People</ReservationLabel>
+              <PeopleHourSelect>
+                <option value="2">2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5 People</option>
+                <option value="6">6 People</option>
+                <option value="7">7 People</option>
+              </PeopleHourSelect>
+            </div>
+            <div>
+              <ReservationLabel>Hour</ReservationLabel>
+              <PeopleHourSelect aria-label="Select">
+                <option value="">Select</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Anniversary">Anniversary</option>
+              </PeopleHourSelect>
+            </div>
+          </PeopleHourSection>
+          <ZoneSection>
+            <ReservationLabel>Zone</ReservationLabel>
+            <div>
+              <input type="radio" name="zone" value="indoor" id="indoor" />
+              <ReservationZoneLabel htmlFor="indoor">Indoor</ReservationZoneLabel>
+            </div>
+            <div>
+              <input type="radio" name="zone" value="outdoor" id="outdoor" />
+              <ReservationZoneLabel htmlFor="outdoor">Outdoor</ReservationZoneLabel>
+            </div>
+          </ZoneSection>
+          <ReservationButton>Continue</ReservationButton>
+        </ReservationSection>
+      </ReservationWrapper>
 
-        <div>
-          <div>
-            <h3>People</h3>
-            <select>
-              <option value="2">2 People</option>
-              <option value="3">3 People</option>
-              <option value="4">4 People</option>
-              <option value="5">5 People</option>
-              <option value="6">6 People</option>
-              <option value="7">7 People</option>
-            </select>
-          </div>
-          <div>
-            <h3>Hour</h3>
-            <select aria-label="Select">
-              <option value="">Select</option>
-              <option value="Birthday">Birthday</option>
-              <option value="Anniversary">Anniversary</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <h3>Zone</h3>
-          <div>
-            <input type="radio" name="zone" value="indoor" id="indoor" />
-            <label htmlFor="indoor">Indoor</label>
-          </div>
-          <div>
-            <input type="radio" name="zone" value="outdoor" id="outdoor" />
-            <label htmlFor="outdoor">Outdoor</label>
-          </div>
-        </div>
-        <Button>Continue</Button>
-      </SectionWrapper>
       <SectionWrapper>
         <button>Back</button>
         <h1>Details</h1>

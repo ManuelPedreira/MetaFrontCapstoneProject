@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   color-scheme: light dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+
 }
 
 
@@ -35,9 +36,11 @@ a {
   text-decoration: inherit;
   color: ${({ theme }) => theme.color.secondary.main};
 
-  &:hover{
-    text-decoration: underline;
-    cursor: pointer;
+  @media (pointer: fine) {
+    &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 }
 

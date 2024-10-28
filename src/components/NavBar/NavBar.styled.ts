@@ -6,7 +6,7 @@ export const NavBarContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.color.background.primaryTransparent};
   backdrop-filter: blur(8px);
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const NavigationWrapperBig = styled.div`
@@ -47,20 +47,21 @@ export const NavigationIconsSmall = styled.div`
 export const NavigationIcon = styled.div<NavigationSmallBarProps>`
   width: 35px;
   height: 35px;
-  padding: ${({ theme }) => theme.frames.section.padding};
+  padding: 0.6rem ${({ theme }) => theme.frames.section.paddingMobile};
   ${({ theme, $menuOpen }) => $menuOpen && `background-color:${theme.color.primary.detail}`};
   transition: 0.2s all linear;
 
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.color.primary.detail};
+  @media (pointer: fine) {
+    &:hover {
+      cursor: pointer;
+      background-color: ${({ theme }) => theme.color.primary.detail};
+    }
   }
 `;
 
 export const NavigationItemsSmall = styled.nav<NavigationSmallBarProps>`
   position: absolute;
   width: 100%;
-
   height: 100vh;
   padding: 1.5rem 0;
   background-color: ${({ theme }) => theme.color.background.primary};
@@ -68,7 +69,7 @@ export const NavigationItemsSmall = styled.nav<NavigationSmallBarProps>`
   transition: 0.4s all linear;
 
   top: ${({ $menuOpen }) => ($menuOpen ? "50px" : "-120vh")};
-  z-index: -2;
+  z-index: -1;
 `;
 
 export const NavigationItemsContainer = styled.ul`
@@ -95,9 +96,9 @@ export const NatigationBarItem = styled.li<NavigationSmallBarProps>`
     font-size: ${({ theme }) => theme.text.normal.fontSize};
   }
 
-  &:hover {
-    color: ${({ theme }) => theme.color.primary.main};
-    cursor: pointer;
-    text-decoration: underline;
+  @media (pointer: fine) {
+    &:hover {
+      color: ${({ theme }) => theme.color.primary.main};
+    }
   }
 `;

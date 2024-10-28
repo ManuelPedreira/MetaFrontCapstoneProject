@@ -33,25 +33,25 @@ const theme = {
   },
   text: {
     title: {
-      fontFamily: "MarkaziText",
+      fontFamily: "MarkaziText, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
       fontSize: "60pt",
     },
     subtitle: {
-      fontFamily: "MarkaziText",
+      fontFamily: "MarkaziText, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
       fontSize: "40pt",
     },
     normal: {
-      fontFamily: "Karla",
+      fontFamily: "Karla, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
       fontSize: "16pt",
     },
     card: {
-      fontFamily: "Karla",
+      fontFamily: "Karla, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
       lineHeight: "1.5",
       headFontSize: "16pt",
       textFontSize: "14pt",
     },
     navigationBar: {
-      fontFamily: "Karla",
+      fontFamily: "Karla, source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace",
       fontSize: "14pt",
       fontWeight: 600,
     },
@@ -59,6 +59,7 @@ const theme = {
   frames: {
     section: {
       padding: "0.5rem 2rem",
+      paddingMobile: "1.2rem",
     },
 
     resolution: {
