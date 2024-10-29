@@ -95,10 +95,4 @@ export const NatigationBarItem = styled.li<NavigationSmallBarProps>`
   @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
     font-size: ${({ theme }) => theme.text.normal.fontSize};
   }
-
-  @media (pointer: fine) {
-    &:hover {
-      color: ${({ theme }) => theme.color.primary.main};
-    }
-  }
 `;

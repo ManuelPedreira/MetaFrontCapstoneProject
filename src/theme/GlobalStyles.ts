@@ -14,10 +14,9 @@ const GlobalStyles = createGlobalStyle`
 #root {
   width: 100%;
   margin: 0 auto;
-  color-scheme: light dark;
+  color-scheme: normal;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-
 }
 
 

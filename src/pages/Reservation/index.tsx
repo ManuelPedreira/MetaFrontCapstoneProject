@@ -16,6 +16,8 @@ import {
   ReservationZoneLabel,
   ReservationButton,
   PeopleHourSelect,
+  ZoneRadio,
+  ZoneRadioWrapper,
 } from "./Reservation.styled";
 import headerImage from "/images/restauranfood.jpg";
 
@@ -31,7 +33,6 @@ const ReservationPage = () => {
         <ReservationSection>
           <SectionTittle>Reserve a table</SectionTittle>
           <Calendar value={date} onChange={(date) => setDate(date)} />
-
           <PeopleHourSection>
             <div>
               <ReservationLabel>People</ReservationLabel>
@@ -55,39 +56,42 @@ const ReservationPage = () => {
           </PeopleHourSection>
           <ZoneSection>
             <ReservationLabel>Zone</ReservationLabel>
-            <div>
-              <input type="radio" name="zone" value="indoor" id="indoor" />
+            <ZoneRadioWrapper>
+              <ZoneRadio type="radio" name="zone" value="indoor" id="indoor" />
               <ReservationZoneLabel htmlFor="indoor">Indoor</ReservationZoneLabel>
-            </div>
-            <div>
-              <input type="radio" name="zone" value="outdoor" id="outdoor" />
+            </ZoneRadioWrapper>
+            <ZoneRadioWrapper>
+              <ZoneRadio type="radio" name="zone" value="outdoor" id="outdoor" />
               <ReservationZoneLabel htmlFor="outdoor">Outdoor</ReservationZoneLabel>
-            </div>
+            </ZoneRadioWrapper>
           </ZoneSection>
           <ReservationButton>Continue</ReservationButton>
         </ReservationSection>
       </ReservationWrapper>
 
-      <SectionWrapper>
-        <button>Back</button>
-        <h1>Details</h1>
-        <p>Thursday, 29th August 2024</p>
-        <p>2 people, outdoor seating</p>
-        <label>
-          Name *<input></input>
-        </label>
-        <label>
-          Surname *<input></input>
-        </label>
-        <label>
-          Phone contact *<input></input>
-        </label>
-        <p>
-          Your table will be held for 15 minutes past your reservation time. If you are running
-          late, please contact us to avoid cancellation
-        </p>
-        <Button>Send Reservation</Button>
-      </SectionWrapper>
+      <ReservationWrapper>
+        <HeaderImage src={headerImage} />
+        <ReservationSection>
+          <button>Back</button>
+          <SectionTittle>Details</SectionTittle>
+          <p>Thursday, 29th August 2024</p>
+          <p>2 people, outdoor seating</p>
+          <ReservationLabel>
+            Name *<input></input>
+          </ReservationLabel>
+          <ReservationLabel>
+            Surname *<input></input>
+          </ReservationLabel>
+          <ReservationLabel>
+            Phone contact *<input></input>
+          </ReservationLabel>
+          <p>
+            Your table will be held for 15 minutes past your reservation time. If you are running
+            late, please contact us to avoid cancellation
+          </p>
+          <ReservationButton>Send Reservation</ReservationButton>
+        </ReservationSection>
+      </ReservationWrapper>
       <Footer />
     </>
   );
