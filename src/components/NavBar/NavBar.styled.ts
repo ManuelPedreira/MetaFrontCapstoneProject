@@ -93,6 +93,6 @@ export const NatigationBarItem = styled.li<NavigationSmallBarProps>`
   ${({ $menuOpen }) => !$menuOpen && "display: none"};
 
   @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
-    font-size: ${({ theme }) => theme.text.normal.fontSize};
+    font-size: ${({ theme }) => theme.text.normal.fontSize.normal};
   }
 `;

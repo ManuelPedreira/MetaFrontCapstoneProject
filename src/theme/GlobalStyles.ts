@@ -27,7 +27,7 @@ body {
   min-height: 100vh;
   
   font-family: ${({ theme }) => theme.text.normal.fontFamily};
-  font-size: ${({ theme }) => theme.text.normal.fontSize};
+  font-size: ${({ theme }) => theme.text.normal.fontSize.normal};
   color: ${({ theme }) => theme.color.highlight.primary};
 }
 

@@ -29,7 +29,7 @@ export const AboutUsSubtitle = styled.h3`
 
 export const AboutUsText = styled.p`
   font-family: ${({ theme }) => theme.text.normal.fontFamily};
-  font-size: ${({ theme }) => theme.text.normal.fontSize};
+  font-size: ${({ theme }) => theme.text.normal.fontSize.normal};
   text-align: justify;
 
   @media (min-width: ${({ theme }) => theme.frames.resolution.phoneBreak.minWidth}) {

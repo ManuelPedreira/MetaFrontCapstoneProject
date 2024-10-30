@@ -20,12 +20,12 @@ export const StyledButton = styled.button`
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.color.primary.detailDark};
+    background-color: ${({ theme }) => theme.color.primary.detailSoft};
     cursor: pointer;
   }
   
   &:active {
-    background-color: ${({ theme }) => theme.color.primary.detailDarker};
+    background-color: ${({ theme }) => theme.color.primary.detailStrong};
   }
 
   &:disabled {

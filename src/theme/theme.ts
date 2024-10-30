@@ -5,9 +5,10 @@ const theme = {
   color: {
     primary: {
       main: "#495E57",
+      mainSoft: "#617C73",
       detail: "#F4CE14",
-      detailDark: "#E0BA00",
-      detailDarker: "#CCAA00",
+      detailSoft: "#FFDF43",
+      detailStrong: "#E0BA00",
     },
     secondary: {
       main: "#EE9972",
@@ -45,7 +46,11 @@ const theme = {
     },
     normal: {
       fontFamily: karla,
-      fontSize: "16pt",
+      fontSize: {
+        normal: "16pt",
+        small: "14pt",
+        extraSmall: "12pt",
+      },
     },
     card: {
       fontFamily: karla,

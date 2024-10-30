@@ -4,14 +4,15 @@ import Button from "../../ui/Button/Button";
 
 export const ReservationWrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   min-height: calc(100vh - 54px);
-  
-  @media (min-width: ${({theme}) => theme.frames.resolution.phoneBreak.minWidth}) {
+
+  @media (min-width: ${({ theme }) => theme.frames.resolution.phoneBreak.minWidth}) {
   }
 `;
 
-export const ReservationSection = styled(SectionWrapper)`
+export const StyledSection = styled(SectionWrapper)`
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -27,13 +28,22 @@ export const HeaderImage = styled.img`
   object-position: center 52%;
 `;
 
-export const SectionTittle = styled.p`
+export const BackButtonWrapper = styled.div`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.color.highlight.secondary};
+`;
+
+export const SectionTittle = styled.h1`
   font-family: ${({ theme }) => theme.text.subtitle.fontFamily};
   font-size: ${({ theme }) => theme.text.subtitle.fontSize};
+  font-weight: initial;
   line-height: 2rem;
   color: ${({ theme }) => theme.color.primary.main};
   width: 100%;
-  padding-top: 0.5rem;
+  margin: 0;
 `;
 
 export const ReservationText = styled.p`
@@ -41,93 +51,32 @@ export const ReservationText = styled.p`
   font-size: ${({ theme }) => theme.text.card.textFontSize};
   line-height: ${({ theme }) => theme.text.card.lineHeight};
   color: ${({ theme }) => theme.color.highlight.primary};
-  margin: 0 0.5rem;
+  margin: 0 1rem;
 `;
 
-export const ReservationLabel = styled(ReservationText)`
-  font-weight: bold;
-`;
-
-export const PeopleHourSection = styled.div`
+export const PeopleHourWrapper = styled.div`
   display: grid;
   gap: 1rem;
   grid-template-columns: 1fr 1fr;
   width: 100%;
 `;
 
-export const PeopleHourSelect = styled.select`
+export const StyledButton = styled(Button)`
   width: 100%;
-  background-color: transparent;
+`;
+
+export const ReservationDetailsText = styled.p`
+  font-family: ${({ theme }) => theme.text.normal.fontFamily};
+  font-size: ${({ theme }) => theme.text.normal.fontSize.small};
   color: ${({ theme }) => theme.color.highlight.primary};
-  border: 1px solid ${({ theme }) => theme.color.primary.detail};
-  border-radius: ${({ theme }) => theme.radiuses.medium};
-  padding: 0.3rem 1rem;
+  margin: 5px 0;
+  text-align: center;
+`;
+
+export const ReservationInfoText = styled.span`
   font-family: ${({ theme }) => theme.text.card.fontFamily};
-  font-size: ${({ theme }) => theme.text.card.textFontSize};
-  cursor: pointer;
-
-  &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.secondary.main};
-  }
-
-  &:disabled {
-    background-color: ${({ theme }) => theme.color.highlight.middle};
-    color: ${({ theme }) => theme.color.highlight.secondary};
-  }
-`;
-
-export const ZoneSection = styled.div`
-  display: flex;
-  flex-shrink: 1;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
-`;
-
-export const ReservationZoneLabel = styled.label`
-  font-family: ${({ theme }) => theme.text.card.fontFamily};
-  font-size: ${({ theme }) => theme.text.card.textFontSize};
-  line-height: ${({ theme }) => theme.text.card.lineHeight};
-  color: ${({ theme }) => theme.color.highlight.primary};
-`;
-
-export const ZoneRadioWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-export const ZoneRadio = styled.input`
-  border: 1px solid ${({ theme }) => theme.color.highlight.primary};
-  width: 1.15rem;
-  height: 1.15rem;
-  appearance: none;
-  border-radius: 50%;
-  transform: translateY(-0.075rem);
-  display: grid;
-  place-content: center;
-
-  &:before {
-    content: "";
-    transform: scale(0);
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    transition: 120ms transform ease-in-out;
-    box-shadow: inset 1rem 1rem ${({ theme }) => theme.color.primary.main};
-  }
-
-  &:checked::before {
-    transform: scale(1);
-  }
-
-  &:focus-visible {
-    outline: 2px solid ${({ theme }) => theme.color.secondary.main};
-  }
-`;
-
-export const ReservationButton = styled(Button)`
-  width: 100%;
+  font-size: ${({ theme }) => theme.text.normal.fontSize.extraSmall};
+  color: ${({ theme }) => theme.color.primary.main};
+  font-weight: 500;
+  text-align: center;
 `;

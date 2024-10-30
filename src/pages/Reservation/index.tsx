@@ -1,96 +1,110 @@
 import { useState } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import Button from "../../ui/Button/Button";
 import Calendar from "../../ui/Calendar";
-import SectionWrapper from "../../ui/SectionWrapper";
 import { ScrollRestoration } from "react-router-dom";
 import {
   HeaderImage,
-  PeopleHourSection,
+  PeopleHourWrapper,
   ReservationWrapper,
-  ReservationSection,
-  ZoneSection,
+  StyledSection,
   SectionTittle,
-  ReservationLabel,
-  ReservationZoneLabel,
-  ReservationButton,
-  PeopleHourSelect,
-  ZoneRadio,
-  ZoneRadioWrapper,
+  StyledButton,
+  ReservationDetailsText,
+  ReservationInfoText,
+  BackButtonWrapper,
 } from "./Reservation.styled";
-import headerImage from "/images/restauranfood.jpg";
+import headerImage1 from "/images/restauranfood.jpg";
+import headerImage2 from "/images/fish.jpg";
+import Input from "../../ui/Input";
+import Select from "../../ui/Select";
+import RadioSelection from "../../ui/RadioSelection";
+import BackButton from "../../ui/BackButton";
 
 const ReservationPage = () => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(() => {
+    const now = new Date();
+    now.setUTCHours(0, 0, 0, 0);
+    return now;
+  });
+  const [guest, setGuest] = useState("2");
+  const [zone, setZone] = useState("indoor");
 
   return (
     <>
       <ScrollRestoration />
       <NavBar />
       <ReservationWrapper>
-        <HeaderImage src={headerImage} />
-        <ReservationSection>
+        <HeaderImage src={headerImage1} />
+        <StyledSection>
           <SectionTittle>Reserve a table</SectionTittle>
           <Calendar value={date} onChange={(date) => setDate(date)} />
-          <PeopleHourSection>
-            <div>
-              <ReservationLabel>People</ReservationLabel>
-              <PeopleHourSelect>
-                <option value="2">2 People</option>
-                <option value="3">3 People</option>
-                <option value="4">4 People</option>
-                <option value="5">5 People</option>
-                <option value="6">6 People</option>
-                <option value="7">7 People</option>
-              </PeopleHourSelect>
-            </div>
-            <div>
-              <ReservationLabel>Hour</ReservationLabel>
-              <PeopleHourSelect aria-label="Select">
-                <option value="">Select</option>
-                <option value="Birthday">Birthday</option>
-                <option value="Anniversary">Anniversary</option>
-              </PeopleHourSelect>
-            </div>
-          </PeopleHourSection>
-          <ZoneSection>
-            <ReservationLabel>Zone</ReservationLabel>
-            <ZoneRadioWrapper>
-              <ZoneRadio type="radio" name="zone" value="indoor" id="indoor" />
-              <ReservationZoneLabel htmlFor="indoor">Indoor</ReservationZoneLabel>
-            </ZoneRadioWrapper>
-            <ZoneRadioWrapper>
-              <ZoneRadio type="radio" name="zone" value="outdoor" id="outdoor" />
-              <ReservationZoneLabel htmlFor="outdoor">Outdoor</ReservationZoneLabel>
-            </ZoneRadioWrapper>
-          </ZoneSection>
-          <ReservationButton>Continue</ReservationButton>
-        </ReservationSection>
+          <PeopleHourWrapper>
+            <Select
+              label="People"
+              optionList={[
+                { value: "2", text: "2 People" },
+                { value: "3", text: "3 People" },
+                { value: "4", text: "4 People" },
+                { value: "5", text: "5 People" },
+                { value: "6", text: "6 People" },
+                { value: "7", text: "7 People" },
+                { value: "8", text: "8 People" },
+                { value: "9", text: "9 People" },
+              ]}
+              value={guest}
+              onChange={({ target }) => setGuest(target.value)}
+            />
+            <Select
+              label="Hour"
+              optionList={[
+                { value: "", text: "Select" },
+                { value: "14:30", text: "14:30" },
+                { value: "15:00", text: "15:00" },
+                { value: "16:00", text: "16:00" },
+              ]}
+              arialLabel="Select"
+            />
+          </PeopleHourWrapper>
+          <RadioSelection
+            label="Zone"
+            groupId="zone"
+            optionList={[
+              { text: "Indoor", value: "indoor" },
+              { text: "Outdoor", value: "outdoor" },
+            ]}
+            value={zone}
+            onChange={(value) => setZone(value)}
+          />
+          <StyledButton>Continue</StyledButton>
+        </StyledSection>
       </ReservationWrapper>
 
       <ReservationWrapper>
-        <HeaderImage src={headerImage} />
-        <ReservationSection>
-          <button>Back</button>
+        <BackButtonWrapper>
+          <BackButton />
+        </BackButtonWrapper>
+        <HeaderImage src={headerImage2} />
+        <StyledSection>
           <SectionTittle>Details</SectionTittle>
-          <p>Thursday, 29th August 2024</p>
-          <p>2 people, outdoor seating</p>
-          <ReservationLabel>
-            Name *<input></input>
-          </ReservationLabel>
-          <ReservationLabel>
-            Surname *<input></input>
-          </ReservationLabel>
-          <ReservationLabel>
-            Phone contact *<input></input>
-          </ReservationLabel>
-          <p>
+          <ReservationDetailsText>
+            {date.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+            <br /> {`${guest} people, ${zone} seating`}
+          </ReservationDetailsText>
+          <Input label="Name *" id="nameInput" />
+          <Input label="Surname *" id="surnameInput" />
+          <Input label="Phone contact *" id="phoneInput" />
+          <ReservationInfoText>
             Your table will be held for 15 minutes past your reservation time. If you are running
-            late, please contact us to avoid cancellation
-          </p>
-          <ReservationButton>Send Reservation</ReservationButton>
-        </ReservationSection>
+            late, please contact us to avoid cancellation.
+          </ReservationInfoText>
+          <StyledButton>Send Reservation</StyledButton>
+        </StyledSection>
       </ReservationWrapper>
       <Footer />
     </>

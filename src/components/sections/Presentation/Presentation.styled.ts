@@ -58,7 +58,7 @@ export const PresentationSubtittle = styled.h3`
 `;
 
 export const PresentationText = styled.p`
-  font-size: ${({ theme }) => theme.text.normal.fontSize};
+  font-size: ${({ theme }) => theme.text.normal.fontSize.normal};
 
   @media (min-width: ${minWidth}) {
     min-height: 100px;
