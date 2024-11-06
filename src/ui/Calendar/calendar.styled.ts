@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const StyledCalendar = styled(DateCalendar)`
   width: inherit;
   height: 15rem;
+  grid-area: calendar;
 
   .MuiDayCalendar-header,
   .MuiDayCalendar-weekContainer {

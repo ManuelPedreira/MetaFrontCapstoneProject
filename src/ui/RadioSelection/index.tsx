@@ -17,11 +17,19 @@ type RadioSelectionProps = {
   optionList: RadioOption[];
   value?: string;
   onChange?: (value: string) => void;
+  gridArea?: string;
 };
 
-const RadioSelection = ({ label, groupId, optionList, value, onChange }: RadioSelectionProps) => {
+const RadioSelection = ({
+  label,
+  groupId,
+  optionList,
+  value,
+  onChange,
+  gridArea,
+}: RadioSelectionProps) => {
   return (
-    <RadioSelectionWrapper>
+    <RadioSelectionWrapper style={{ gridArea }}>
       <StyledLabel>{label}</StyledLabel>
       {optionList.map((item) => (
         <RadioWrapper key={item.value}>
@@ -30,8 +38,8 @@ const RadioSelection = ({ label, groupId, optionList, value, onChange }: RadioSe
             name={groupId}
             value={item.value}
             id={item.value}
-            checked={value? item.value === value : undefined}
-            onClick={() => onChange? onChange(item.value) : null}
+            defaultChecked={value ? item.value === value : undefined}
+            onClick={() => (onChange ? onChange(item.value) : null)}
           />
           <Label htmlFor={item.value}>{item.text}</Label>
         </RadioWrapper>

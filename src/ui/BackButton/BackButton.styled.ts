@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-export const BackButtonContainer = styled.div`
+export const BackButtonContainer = styled.button`
+  border: 0;
   background-color: ${({ theme }) => theme.color.primary.main};
   display: flex;
   align-items: center;
@@ -10,7 +11,6 @@ export const BackButtonContainer = styled.div`
 
   border-radius: 50%;
   transition: 0.2s all linear;
-
 
   &:hover {
     background-color: ${({ theme }) => theme.color.primary.mainSoft};

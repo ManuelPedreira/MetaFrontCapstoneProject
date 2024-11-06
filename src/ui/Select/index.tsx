@@ -1,4 +1,4 @@
-import { StyledLabel, StyledSelect } from "./Select.styled";
+import { SelectWrapper, StyledLabel, StyledSelect } from "./Select.styled";
 
 type OptionType = {
   value: string;
@@ -11,11 +11,12 @@ type SelectProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   arialLabel?: string;
+  gridArea?: string;
 };
 
-const Select = ({ label, optionList, value, onChange, arialLabel }: SelectProps) => {
+const Select = ({ label, optionList, value, onChange, arialLabel, gridArea }: SelectProps) => {
   return (
-    <div>
+    <SelectWrapper style={{ gridArea }}>
       <StyledLabel>{label}</StyledLabel>
       <StyledSelect aria-label={arialLabel} value={value} onChange={onChange}>
         {optionList.map((item, index) => (
@@ -24,7 +25,7 @@ const Select = ({ label, optionList, value, onChange, arialLabel }: SelectProps)
           </option>
         ))}
       </StyledSelect>
-    </div>
+    </SelectWrapper>
   );
 };
 

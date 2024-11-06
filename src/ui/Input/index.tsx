@@ -8,11 +8,12 @@ type InputProps = {
   onChange?: ChangeEventHandler<HTMLInputElement>;
   isError?: boolean;
   id?: string;
+  gridArea?: string;
 };
 
-const Input = ({ label, value, type, onChange, id }: InputProps) => {
+const Input = ({ label, value, type, onChange, id, gridArea }: InputProps) => {
   return (
-    <InputsWrapper>
+    <InputsWrapper style={{ gridArea }}>
       <StyledLabel htmlFor={id}>{label}</StyledLabel>
       <StyledInput value={value} type={type} onChange={onChange} id={id}></StyledInput>
     </InputsWrapper>

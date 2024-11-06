@@ -9,9 +9,9 @@ import {
 } from "./Footer.styled";
 import logo from "/images/logo-vertical-white.png";
 
-const Footer = () => {
+const Footer = ({ className }: { className?: string }) => {
   return (
-    <FooterWrapper>
+    <FooterWrapper className={className}>
       <FooterContainer>
         <FooterColumn>
           <FooterLogo src={logo} />
@@ -29,7 +29,7 @@ const Footer = () => {
           <p>2395 Maldove Way,</p>
           <p>Chicago Illinois</p>
           <Link to="tel:(629)2436827">(629)-243-6827</Link>
-          <Link to="mailto:info@littlelemon.com" >info@littlelemon.com</Link>
+          <Link to="mailto:info@littlelemon.com">info@littlelemon.com</Link>
         </FooterColumn>
         <FooterColumn>
           <FooterTitle>Connect</FooterTitle>
