@@ -11,12 +11,21 @@ type SelectProps = {
   value?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   arialLabel?: string;
-  gridArea?: string;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
-const Select = ({ label, optionList, value, onChange, arialLabel, gridArea }: SelectProps) => {
+const Select = ({
+  label,
+  optionList,
+  value,
+  onChange,
+  arialLabel,
+  style,
+  className,
+}: SelectProps) => {
   return (
-    <SelectWrapper style={{ gridArea }}>
+    <SelectWrapper className={className} style={style}>
       <StyledLabel>{label}</StyledLabel>
       <StyledSelect aria-label={arialLabel} value={value} onChange={onChange}>
         {optionList.map((item, index) => (

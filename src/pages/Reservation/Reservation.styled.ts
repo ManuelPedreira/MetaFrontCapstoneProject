@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Footer from "../../components/Footer";
 import Button from "../../ui/Button/Button";
 import SectionWrapper from "../../ui/SectionWrapper";
+import { ReservationPageOptions } from ".";
+import { getGridArea } from "./ReservationGrids";
 
 export const ReservationWrapper = styled.div`
   display: flex;
@@ -36,31 +38,8 @@ export const SectionTittle = styled.h1`
   grid-area: title;
 `;
 
-type visibleStates = "first" | "last";
-
 type StyledSectionProps = {
-  $visible?: visibleStates;
-};
-
-const getGridArea = (visible?: visibleStates) => {
-  if (visible === "first")
-    return `
-      "title title"
-      "calendar calendar"
-      "people hour"
-      "zone zone"
-      "button button"
-    `;
-  else if (visible === "last")
-    return `
-      "title title"
-      "details details"
-      "name name"
-      "surname surname"
-      "phone phone"
-      "info info"
-      "button button"
-    `;
+  reservationPage?: ReservationPageOptions;
 };
 
 export const StyledSection = styled(SectionWrapper)<StyledSectionProps>`
@@ -68,24 +47,19 @@ export const StyledSection = styled(SectionWrapper)<StyledSectionProps>`
   width: 100%;
   box-sizing: border-box;
   gap: 1rem;
+
   grid-template-columns: 1fr 1fr;
   min-height: calc(100vh - 54px - (100vw * 9 / 16));
-  grid-template-areas: ${({ $visible }) => getGridArea($visible)};
-  
+  grid-template-areas: ${({ reservationPage }) => getGridArea(reservationPage)};
+
   @media (min-width: ${({ theme }) => theme.frames.resolution.phoneBreak.minWidth}) {
-    min-height: auto;
-    grid-template-areas:
-    "title title"
-    "calendar name"
-    "calendar surname"
-    "calendar phone"
-    "people hour"
-    ". zone"
-    "info info"
-    "button button"
-    "details details";
     max-width: ${({ theme }) => theme.frames.resolution.desktop};
     margin: 3rem auto;
+    gap: 1rem 2rem;
+
+    min-height: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: ${getGridArea("full")};
   }
 `;
 
@@ -100,6 +74,7 @@ export const BackButtonWrapper = styled.div`
 export const StyledButton = styled(Button)`
   width: 100%;
   align-self: flex-end;
+  grid-area: button;
 `;
 
 export const StyledFooter = styled(Footer)`

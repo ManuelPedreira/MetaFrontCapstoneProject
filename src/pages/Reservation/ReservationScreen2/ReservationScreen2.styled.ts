@@ -6,6 +6,7 @@ export const ReservationDetailsText = styled.p`
   color: ${({ theme }) => theme.color.highlight.primary};
   margin: 5px 0;
   text-align: center;
+  grid-area: details;
 `;
 
 export const ReservationInfoText = styled.span`
@@ -14,4 +15,5 @@ export const ReservationInfoText = styled.span`
   color: ${({ theme }) => theme.color.primary.main};
   font-weight: 500;
   text-align: center;
+  grid-area: info;
 `;

@@ -17,7 +17,8 @@ type RadioSelectionProps = {
   optionList: RadioOption[];
   value?: string;
   onChange?: (value: string) => void;
-  gridArea?: string;
+  style?: React.CSSProperties;
+  className?: string;
 };
 
 const RadioSelection = ({
@@ -26,10 +27,11 @@ const RadioSelection = ({
   optionList,
   value,
   onChange,
-  gridArea,
+  style,
+  className,
 }: RadioSelectionProps) => {
   return (
-    <RadioSelectionWrapper style={{ gridArea }}>
+    <RadioSelectionWrapper className={className} style={style}>
       <StyledLabel>{label}</StyledLabel>
       {optionList.map((item) => (
         <RadioWrapper key={item.value}>

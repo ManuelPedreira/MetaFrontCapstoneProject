@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar";
 import { ScrollRestoration } from "react-router-dom";
 import {
@@ -15,9 +15,13 @@ import ReservationScreen2 from "./ReservationScreen2";
 import headerImage1 from "/images/restauranfood.jpg";
 import headerImage2 from "/images/fish.jpg";
 import BackButton from "../../ui/BackButton";
+import useIsPhone from "../../components/hooks/useIsPhone";
+
+export type ReservationPageOptions = "first" | "last";
 
 const ReservationPage = () => {
-  const [isConfirmationPage, setIsConfirmationPage] = useState<boolean>(false);
+  const [reservationPage, setReservationPage] = useState<ReservationPageOptions>("first");
+  const { isPhone } = useIsPhone();
 
   const [date, setDate] = useState(() => {
     const now = new Date();
@@ -32,29 +36,40 @@ const ReservationPage = () => {
       <ScrollRestoration />
       <NavBar />
       <ReservationWrapper>
-        {isConfirmationPage && (
+        {reservationPage === "last" && isPhone ? (
           <BackButtonWrapper>
-            <BackButton onClick={() => setIsConfirmationPage(false)} />
+            <BackButton onClick={() => setReservationPage("first")} />
           </BackButtonWrapper>
-        )}
-        <HeaderImage src={!isConfirmationPage ? headerImage1 : headerImage2} />
+        ) : null}
+        <HeaderImage src={reservationPage === "first" || !isPhone ? headerImage1 : headerImage2} />
 
-        <StyledSection $visible={isConfirmationPage ? "last" : "first"}>
-          <SectionTittle>{!isConfirmationPage ? "Reserve a table" : "Details"}</SectionTittle>
-          {!isConfirmationPage && (
-            <ReservationScreen1
-              date={date}
-              onDateChange={(newDate) => setDate(newDate)}
-              guest={guest}
-              onGuestChange={(newGuest) => setGuest(newGuest)}
-              zone={zone}
-              onZoneChange={(newZone) => setZone(newZone)}
-            />
+        <StyledSection reservationPage={reservationPage}>
+          <SectionTittle>
+            {reservationPage === "first" ? "Reserve a table" : "Details"}
+          </SectionTittle>
+          <ReservationScreen1
+            enabledScreen={reservationPage === "first"}
+            isPhone={isPhone}
+            date={date}
+            onDateChange={(newDate) => setDate(newDate)}
+            guest={guest}
+            onGuestChange={(newGuest) => setGuest(newGuest)}
+            zone={zone}
+            onZoneChange={(newZone) => setZone(newZone)}
+          />
+
+          <ReservationScreen2
+            enabledScreen={reservationPage === "last"}
+            isPhone={isPhone}
+            date={date}
+            guest={guest}
+            zone={zone}
+          />
+          {isPhone && reservationPage === "first" ? (
+            <StyledButton onClick={() => setReservationPage("last")}>Continue</StyledButton>
+          ) : (
+            <StyledButton onClick={() => {}}>Send Reservation</StyledButton>
           )}
-          {isConfirmationPage && <ReservationScreen2 date={date} guest={guest} zone={zone} />}
-          <StyledButton gridArea="button" onClick={() => setIsConfirmationPage(true)}>
-            {isConfirmationPage ? "Send Reservation" : "Continue"}
-          </StyledButton>
         </StyledSection>
       </ReservationWrapper>
       <StyledFooter />

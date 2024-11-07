@@ -11,6 +11,8 @@ import dayjs, { Dayjs } from "dayjs";
 type CalendarProps = {
   value: Date;
   onChange: (date: Date) => void;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 const isSpanish = () => {
@@ -19,12 +21,13 @@ const isSpanish = () => {
   return simplifiedLanguage === "eses";
 };
 
-const Calendar = ({ value, onChange }: CalendarProps) => {
+const Calendar = ({ value, onChange, className }: CalendarProps) => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeMuiProvider theme={muiTheme}>
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={isSpanish() ? "es" : "en"}>
           <StyledCalendar
+            className={className}
             disablePast={true}
             showDaysOutsideCurrentMonth
             fixedWeekNumber={5}
