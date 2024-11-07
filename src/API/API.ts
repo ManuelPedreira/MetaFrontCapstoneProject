@@ -1,14 +1,25 @@
-const seededRandom = function (seed) {
-  var m = 2 ** 35 - 31;
-  var a = 185852;
-  var s = seed % m;
+const seededRandom = function (seed: number) {
+  const m = 2 ** 35 - 31;
+  const a = 185852;
+  let s = seed % m;
   return function () {
     return (s = (s * a) % m) / m;
   };
 };
 
-const readData = (date) => {
-  const storedData = JSON.parse(localStorage.getItem("BookingAPIData"));
+type DataType = {
+  time: string;
+  guests: number;
+  name: string;
+  surname: string;
+  phone: string;
+};
+
+type StoredDataType = { date: string } & DataType;
+type FormDataType = { date: Date } & DataType;
+
+const readData = (date?: Date): StoredDataType[] => {
+  const storedData: StoredDataType[] = JSON.parse(localStorage.getItem("BookingAPIData") ?? "");
 
   if (date && storedData) {
     const storedFiltratedData = storedData.filter(
@@ -20,17 +31,20 @@ const readData = (date) => {
   return storedData;
 };
 
-const storeData = (formData) => {
+const storeData = (formData: FormDataType) => {
   const data = readData();
-  const formatFormData = { ...formData, date: formData.date.toISOString().split("T")[0] };
+  const formatFormData: StoredDataType = {
+    ...formData,
+    date: formData.date.toISOString().split("T")[0],
+  };
   const newData = data ? [...data, formatFormData] : [formatFormData];
 
   localStorage.setItem("BookingAPIData", JSON.stringify(newData));
 };
 
-export const fetchAPI = async function (date) {
-  let result = [];
-  let random = seededRandom(date.getDate());
+export const fetchAPI = async function (date: Date) {
+  const result = [];
+  const random = seededRandom(date.getDate());
 
   const storedBookings = readData(date);
   const storedBookedTimes = storedBookings?.map(({ time }) => time);
@@ -47,7 +61,7 @@ export const fetchAPI = async function (date) {
   return result.filter((hour) => !storedBookedTimes?.includes(hour));
 };
 
-export const submitAPI = async function (formData) {
+export const submitAPI = async function (formData: FormDataType) {
   storeData(formData);
   return true;
 };

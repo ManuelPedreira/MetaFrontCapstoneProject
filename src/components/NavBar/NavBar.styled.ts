@@ -9,6 +9,12 @@ export const NavBarContainer = styled.div`
   z-index: 1;
 `;
 
+export const StyledLogo = styled.img`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const NavigationWrapperBig = styled.div`
   display: flex;
   justify-content: space-between;

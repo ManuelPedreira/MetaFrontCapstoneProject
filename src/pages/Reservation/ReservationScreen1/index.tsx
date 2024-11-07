@@ -1,7 +1,7 @@
 import Calendar from "../../../ui/Calendar";
-import RadioSelection from "../../../ui/RadioSelection";
 import Select from "../../../ui/Select";
 import GridItemWrapper from "../../../ui/GridItemWrapper";
+import { StyledRadioSelection } from "./ReservationScreeen1.styled";
 
 type ReservationScreen1Props = {
   date: Date;
@@ -58,8 +58,9 @@ const ReservationScreen1 = ({
           arialLabel="Select"
         />
       </GridItemWrapper>
-      <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="zone">
-        <RadioSelection
+
+      {enabledScreen || !isPhone ? (
+        <StyledRadioSelection
           label="Zone"
           groupId="zone"
           optionList={[
@@ -69,7 +70,7 @@ const ReservationScreen1 = ({
           value={zone}
           onChange={(value) => onZoneChange(value)}
         />
-      </GridItemWrapper>
+      ) : null}
     </>
   );
 };

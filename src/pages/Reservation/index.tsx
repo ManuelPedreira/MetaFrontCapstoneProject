@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "../../components/NavBar";
 import { ScrollRestoration } from "react-router-dom";
 import {

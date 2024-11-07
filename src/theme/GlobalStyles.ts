@@ -33,11 +33,11 @@ body {
 
 a {
   text-decoration: inherit;
-  color: ${({ theme }) => theme.color.secondary.main};
 
   @media (pointer: fine) {
     &:hover{
       text-decoration: underline;
+
       cursor: pointer;
     }
   }

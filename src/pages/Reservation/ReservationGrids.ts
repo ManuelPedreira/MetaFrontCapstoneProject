@@ -21,16 +21,14 @@ export const getGridArea = (visible?: ReservationPageOptions | "full") => {
     `;
   else if (visible === "full")
     return `
-    "title title title title"
-      "calendar calendar zone zone"
-      "calendar calendar name name"
-      "calendar calendar surname surname"
-      "people hour phone phone"
-      ". . . ."
-      ". . . ."
-      "info info info info"
-      ". . . ."
-      ". . . ."
-      ". button button ."
-      `;
+    "title title title title title title title title title"
+    "calendar calendar calendar calendar . . . . ."
+    "calendar calendar calendar calendar . zone zone zone zone"
+    "calendar calendar calendar calendar . people people people people"
+    "calendar calendar calendar calendar . hour hour hour hour"
+    ". . . . . . . . ."
+    "name name name surname surname surname phone phone phone"
+    "info info info info info info info info info"
+    ". . . button button button . . ."
+   `;
 };

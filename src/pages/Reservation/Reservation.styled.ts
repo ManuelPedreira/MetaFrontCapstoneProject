@@ -58,8 +58,10 @@ export const StyledSection = styled(SectionWrapper)<StyledSectionProps>`
     gap: 1rem 2rem;
 
     min-height: auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 3rem repeat(4, auto) 1rem 4rem 4rem auto; 
     grid-template-areas: ${getGridArea("full")};
+    align-items: center;
   }
 `;
 
