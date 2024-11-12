@@ -16,20 +16,14 @@ import headerImage1 from "/images/restauranfood.jpg";
 import headerImage2 from "/images/fish.jpg";
 import BackButton from "../../ui/BackButton";
 import useIsPhone from "../../components/hooks/useIsPhone";
+import useReservation from "./useReservation";
 
 export type ReservationPageOptions = "first" | "last";
 
 const ReservationPage = () => {
   const [reservationPage, setReservationPage] = useState<ReservationPageOptions>("first");
   const { isPhone } = useIsPhone();
-
-  const [date, setDate] = useState(() => {
-    const now = new Date();
-    now.setUTCHours(0, 0, 0, 0);
-    return now;
-  });
-  const [guest, setGuest] = useState(2);
-  const [zone, setZone] = useState("indoor");
+  const { formData, isFormValid } = useReservation();
 
   return (
     <>
@@ -50,25 +44,20 @@ const ReservationPage = () => {
           <ReservationScreen1
             enabledScreen={reservationPage === "first"}
             isPhone={isPhone}
-            date={date}
-            onDateChange={(newDate) => setDate(newDate)}
-            guest={guest}
-            onGuestChange={(newGuest) => setGuest(newGuest)}
-            zone={zone}
-            onZoneChange={(newZone) => setZone(newZone)}
+            formData={formData}
           />
 
           <ReservationScreen2
             enabledScreen={reservationPage === "last"}
             isPhone={isPhone}
-            date={date}
-            guest={guest}
-            zone={zone}
+            formData={formData}
           />
           {isPhone && reservationPage === "first" ? (
             <StyledButton onClick={() => setReservationPage("last")}>Continue</StyledButton>
           ) : (
-            <StyledButton onClick={() => {}}>Send Reservation</StyledButton>
+            <StyledButton disabled={!isFormValid()} onClick={() => {}}>
+              Send Reservation
+            </StyledButton>
           )}
         </StyledSection>
       </ReservationWrapper>

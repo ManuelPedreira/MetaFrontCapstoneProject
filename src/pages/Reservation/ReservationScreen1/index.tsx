@@ -2,48 +2,35 @@ import Calendar from "../../../ui/Calendar";
 import Select from "../../../ui/Select";
 import GridItemWrapper from "../../../ui/GridItemWrapper";
 import { StyledRadioSelection } from "./ReservationScreeen1.styled";
+import { FormType } from "../useReservation";
 
 type ReservationScreen1Props = {
-  date: Date;
-  onDateChange: (date: Date) => void;
-  guest: number;
-  onGuestChange: (guest: number) => void;
-  zone: string;
-  onZoneChange: (zone: string) => void;
+  formData: FormType;
   isPhone?: boolean;
   enabledScreen?: boolean;
 };
 
 const ReservationScreen1 = ({
-  date,
-  onDateChange,
-  guest,
-  onGuestChange,
-  zone,
-  onZoneChange,
+  formData,
   isPhone = false,
   enabledScreen = true,
 }: ReservationScreen1Props) => {
   return (
     <>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="calendar">
-        <Calendar value={date} onChange={(date) => onDateChange(date)} />
+        <Calendar value={formData.date.value} onChange={formData.date.onChange} />
       </GridItemWrapper>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="people">
         <Select
           label="People"
-          optionList={[
-            { value: "2", text: "2 People" },
-            { value: "3", text: "3 People" },
-            { value: "4", text: "4 People" },
-            { value: "5", text: "5 People" },
-            { value: "6", text: "6 People" },
-            { value: "7", text: "7 People" },
-            { value: "8", text: "8 People" },
-            { value: "9", text: "9 People" },
-          ]}
-          value={guest.toString()}
-          onChange={({ target }) => onGuestChange(Number(target.value))}
+          optionList={
+            formData.guest.dataList?.map((guestNumber) => ({
+              value: `${guestNumber}`,
+              text: `${guestNumber} People`,
+            })) ?? []
+          }
+          value={formData.guest.value.toString()}
+          onChange={({ target }) => formData.guest.onChange(Number(target.value))}
         />
       </GridItemWrapper>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="hour">
@@ -51,11 +38,11 @@ const ReservationScreen1 = ({
           label="Hour"
           optionList={[
             { value: "", text: "Select" },
-            { value: "14:30", text: "14:30" },
-            { value: "15:00", text: "15:00" },
-            { value: "16:00", text: "16:00" },
+            ...(formData.hour.dataList?.map((hour) => ({ value: hour, text: hour })) ?? []),
           ]}
           arialLabel="Select"
+          value={formData.hour.value}
+          onChange={({ target }) => formData.hour.onChange(target.value)}
         />
       </GridItemWrapper>
 
@@ -63,12 +50,14 @@ const ReservationScreen1 = ({
         <StyledRadioSelection
           label="Zone"
           groupId="zone"
-          optionList={[
-            { text: "Indoor", value: "indoor" },
-            { text: "Outdoor", value: "outdoor" },
-          ]}
-          value={zone}
-          onChange={(value) => onZoneChange(value)}
+          optionList={
+            formData.zone.dataList?.map((zoneValue) => ({
+              text: zoneValue,
+              value: zoneValue,
+            })) ?? []
+          }
+          value={formData.zone.value}
+          onChange={formData.zone.onChange}
         />
       ) : null}
     </>

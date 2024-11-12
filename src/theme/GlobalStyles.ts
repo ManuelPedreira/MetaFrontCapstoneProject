@@ -37,7 +37,6 @@ a {
   @media (pointer: fine) {
     &:hover{
       text-decoration: underline;
-
       cursor: pointer;
     }
   }
