@@ -1,17 +1,22 @@
 import { StyledButton } from "./Button.styled";
 
 type ButtonProps = {
-  children: React.ReactNode;
+  value: string;
   disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler;
   className?: string;
+  type?: "button" | "submit";
 };
 
-const Button = ({ children, disabled, onClick, className }: ButtonProps) => {
+const Button = ({ value, disabled, onClick, className, type = "button" }: ButtonProps) => {
   return (
-    <StyledButton className={className} onClick={onClick} disabled={disabled}>
-      {children}
-    </StyledButton>
+    <StyledButton
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      value={value}
+      type={type}
+    />
   );
 };
 

@@ -29,7 +29,7 @@ const FoodCard = ({ title, price, image, description, buttonText, onClick }: Foo
           <FoodCardPrice>{price}</FoodCardPrice>
         </FoodCardHeaderContainer>
         <FoodCardDescription>{description}</FoodCardDescription>
-        <Button onClick={onClick}>{buttonText}</Button>
+        <Button onClick={onClick} value={buttonText} />
       </FoodCardBody>
     </FoodCardContainer>
   );

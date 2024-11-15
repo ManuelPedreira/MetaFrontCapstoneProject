@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.input`
   padding: 0.3rem;
   text-align: center;
   transition: all 0.2s linear;

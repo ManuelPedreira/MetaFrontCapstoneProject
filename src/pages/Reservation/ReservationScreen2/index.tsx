@@ -1,62 +1,67 @@
 import Input from "../../../ui/Input";
 import GridItemWrapper from "../../../ui/GridItemWrapper";
 import { ReservationDetailsText, ReservationInfoText } from "./ReservationScreen2.styled";
-import { FormType } from "../useReservation";
+import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
+import { FormData } from "..";
 
 type ReservationScreen2Props = {
-  formData: FormType;
   isPhone?: boolean;
   enabledScreen?: boolean;
+  register: UseFormRegister<FormData>;
+  getValues: UseFormGetValues<FormData>;
+  errors: FieldErrors<FormData>;
 };
 
 const ReservationScreen2 = ({
-  formData,
   isPhone = false,
   enabledScreen = true,
+  register,
+  getValues,
+  errors,
 }: ReservationScreen2Props) => {
   return (
     <>
       {enabledScreen && isPhone ? (
         <ReservationDetailsText>
-          15:00
+          {getValues("hour")}
           <br />
-          {formData.date.value.toLocaleDateString("en-US", {
+          {getValues("date").toLocaleDateString("en-US", {
             weekday: "long",
             year: "numeric",
             month: "long",
             day: "numeric",
           })}
-          <br /> {`${formData.guest.value} people, ${formData.zone.value} seating`}
+          <br /> {`${getValues("guest")} people, ${getValues("zone")} seating`}
         </ReservationDetailsText>
       ) : null}
       <GridItemWrapper
         visible={enabledScreen || !isPhone}
         gridArea="name"
         children={Input({
-          label: "Name *",
+          label: "Name",
           id: "nameInput",
-          value: formData.name.value,
-          onChange: ({ target }) => formData.name.onChange(target.value),
+          register: register("name", { required: true, minLength: 4 }),
+          isError: errors.name !== undefined,
         })}
       />
       <GridItemWrapper
         visible={enabledScreen || !isPhone}
         gridArea="surname"
         children={Input({
-          label: "Surname *",
+          label: "Surname",
           id: "surnameInput",
-          value: formData.surname.value,
-          onChange: ({ target }) => formData.surname.onChange(target.value),
+          register: register("surname", { required: true, minLength: 4 }),
+          isError: errors.surname !== undefined,
         })}
       />
       <GridItemWrapper
         visible={enabledScreen || !isPhone}
         gridArea="phone"
         children={Input({
-          label: "Phone contact *",
+          label: "Phone contact",
           id: "phoneInput",
-          value: formData.phone.value,
-          onChange: ({ target }) => formData.phone.onChange(target.value),
+          register: register("phone", { required: true, pattern: /^\+?[1-9][0-9]{7,14}$/ }),
+          isError: errors.phone !== undefined,
         })}
       />
       {enabledScreen || !isPhone ? (

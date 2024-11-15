@@ -9,6 +9,7 @@ const theme = {
       detail: "#F4CE14",
       detailSoft: "#FFDF43",
       detailStrong: "#E0BA00",
+      error: "#EC4D00"
     },
     secondary: {
       main: "#EE9972",

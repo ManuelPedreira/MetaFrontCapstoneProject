@@ -1,3 +1,4 @@
+import { FieldValues, UseFormRegister } from "react-hook-form";
 import Label from "../Label";
 import {
   StyledRadio,
@@ -19,6 +20,7 @@ type RadioSelectionProps = {
   onChange?: (value: string) => void;
   style?: React.CSSProperties;
   className?: string;
+  register?: ReturnType<UseFormRegister<FieldValues>>;
 };
 
 const RadioSelection = ({
@@ -29,6 +31,7 @@ const RadioSelection = ({
   onChange,
   style,
   className,
+  register,
 }: RadioSelectionProps) => {
   return (
     <RadioSelectionWrapper className={className} style={style}>
@@ -42,6 +45,7 @@ const RadioSelection = ({
             id={item.value}
             defaultChecked={value ? item.value === value : undefined}
             onClick={() => (onChange ? onChange(item.value) : null)}
+            {...register}
           />
           <Label htmlFor={item.value}>{item.text}</Label>
         </RadioWrapper>

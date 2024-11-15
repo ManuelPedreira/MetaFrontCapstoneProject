@@ -2,35 +2,44 @@ import Calendar from "../../../ui/Calendar";
 import Select from "../../../ui/Select";
 import GridItemWrapper from "../../../ui/GridItemWrapper";
 import { StyledRadioSelection } from "./ReservationScreeen1.styled";
-import { FormType } from "../useReservation";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { FormData } from "..";
+
+const guestList = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const hoursList = ["12:00", "13:00", "14:00", "15:00"];
 
 type ReservationScreen1Props = {
-  formData: FormType;
   isPhone?: boolean;
   enabledScreen?: boolean;
+  register: UseFormRegister<FormData>;
+  errors?: FieldErrors<FormData>;
+  calendarDefaultValue?: Date;
 };
 
 const ReservationScreen1 = ({
-  formData,
   isPhone = false,
   enabledScreen = true,
+  register,
+  errors,
+  calendarDefaultValue,
 }: ReservationScreen1Props) => {
   return (
     <>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="calendar">
-        <Calendar value={formData.date.value} onChange={formData.date.onChange} />
+        <Calendar register={register("date")} defaultValue={calendarDefaultValue} />
       </GridItemWrapper>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="people">
         <Select
           label="People"
-          optionList={
-            formData.guest.dataList?.map((guestNumber) => ({
+          optionList={[
+            { value: "0", text: "Select" },
+            ...(guestList?.map((guestNumber) => ({
               value: `${guestNumber}`,
               text: `${guestNumber} People`,
-            })) ?? []
-          }
-          value={formData.guest.value.toString()}
-          onChange={({ target }) => formData.guest.onChange(Number(target.value))}
+            })) ?? []),
+          ]}
+          register={register("guest", { required: true, min: 1 })}
+          isError={errors?.guest !== undefined}
         />
       </GridItemWrapper>
       <GridItemWrapper visible={enabledScreen || !isPhone} gridArea="hour">
@@ -38,11 +47,11 @@ const ReservationScreen1 = ({
           label="Hour"
           optionList={[
             { value: "", text: "Select" },
-            ...(formData.hour.dataList?.map((hour) => ({ value: hour, text: hour })) ?? []),
+            ...(hoursList.map((hour) => ({ value: hour, text: hour })) ?? []),
           ]}
           arialLabel="Select"
-          value={formData.hour.value}
-          onChange={({ target }) => formData.hour.onChange(target.value)}
+          register={register("hour", { required: true })}
+          isError={errors?.hour !== undefined}
         />
       </GridItemWrapper>
 
@@ -51,13 +60,12 @@ const ReservationScreen1 = ({
           label="Zone"
           groupId="zone"
           optionList={
-            formData.zone.dataList?.map((zoneValue) => ({
+            ["Indoor", "Outdoor"].map((zoneValue) => ({
               text: zoneValue,
               value: zoneValue,
             })) ?? []
           }
-          value={formData.zone.value}
-          onChange={formData.zone.onChange}
+          register={register("zone")}
         />
       ) : null}
     </>

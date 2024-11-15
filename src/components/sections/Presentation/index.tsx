@@ -23,7 +23,7 @@ const Presentation = () => {
           We are a family owned Mediterranean restaurant, located on Maldove Street in Chicago,
           Illionis. We focus on traditional recipes served with a modern twist.
         </PresentationText>
-        <Button onClick={()=> navigate(getRoute("Reservations"))}>Reserve a table</Button>
+        <Button onClick={() => navigate(getRoute("Reservations"))} value="Reserve a table" />
       </div>
       <ImageContainer>
         <StyledImage style={{ backgroundImage: `url(${image})` }} />
