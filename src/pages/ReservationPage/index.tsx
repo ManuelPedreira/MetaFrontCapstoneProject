@@ -12,8 +12,6 @@ import {
 } from "./Reservation.styled";
 import ReservationScreen1 from "./components/ReservationScreen1";
 import ReservationScreen2 from "./components/ReservationScreen2";
-import headerImage1 from "/images/restauranfood.jpg";
-import headerImage2 from "/images/fish.jpg";
 import BackButton from "../../ui/BackButton";
 import useIsPhone from "../../hooks/useIsPhone";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -79,7 +77,7 @@ const ReservationPage = () => {
             <BackButton onClick={() => setReservationPage("first")} />
           </BackButtonWrapper>
         ) : null}
-        <HeaderImage src={reservationPage === "first" || !isPhone ? headerImage1 : headerImage2} />
+        <HeaderImage src={reservationPage === "first" || !isPhone ? "/images/restauranfood.jpg" : "/images/fish.jpg"} />
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <StyledSection reservationPage={reservationPage}>

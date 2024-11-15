@@ -7,8 +7,6 @@ import {
   AboutUsTitle,
   AboutUsWrapper,
 } from "./AboutUs.styled";
-import image1 from "/images/Mario and Adrian B.jpg";
-import image2 from "/images/Mario and Adrian A.jpg";
 
 const AboutUs = () => {
   return (
@@ -25,8 +23,8 @@ const AboutUs = () => {
         </AboutUsText>
       </div>
       <AboutUsImageWrapper>
-        <AboutUsImage1 src={image1} />
-        <AboutUsImage2 src={image2} />
+        <AboutUsImage1 src="/images/Mario and Adrian b.jpg" />
+        <AboutUsImage2 src="/images/Mario and Adrian A.jpg" />
       </AboutUsImageWrapper>
     </AboutUsWrapper>
   );

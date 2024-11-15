@@ -1,5 +1,4 @@
 import Button from "../../../ui/Button/Button";
-import image from "/images/restauranfood.jpg";
 import {
   ImageContainer,
   PresentationContainer,
@@ -26,7 +25,7 @@ const Presentation = () => {
         <Button onClick={() => navigate(getRoute("Reservations"))} value="Reserve a table" />
       </div>
       <ImageContainer>
-        <StyledImage style={{ backgroundImage: `url(${image})` }} />
+        <StyledImage style={{ backgroundImage: `url("/images/restauranfood.jpg")` }} />
       </ImageContainer>
     </PresentationContainer>
   );
