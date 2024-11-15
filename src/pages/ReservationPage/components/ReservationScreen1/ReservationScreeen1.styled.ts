@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RadioSelection from "../../../ui/RadioSelection";
+import RadioSelection from "../../../../ui/RadioSelection";
 
 export const StyledRadioSelection = styled(RadioSelection)`
   grid-area: zone;

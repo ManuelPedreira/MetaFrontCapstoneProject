@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import theme from "../../theme/theme";
+import theme from "../theme/theme";
 
 const phoneBreak = parseInt(theme.frames.resolution.phoneBreak.maxWidth);
 

@@ -1,4 +1,4 @@
-import { ReservationPageOptions } from ".";
+import { ReservationPageOptions } from "..";
 
 export const getGridArea = (visible?: ReservationPageOptions | "full") => {
   if (visible === "first")

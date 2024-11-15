@@ -1,16 +1,11 @@
-import { ScrollRestoration } from "react-router-dom";
-import Footer from "../../components/Footer";
-import NavBar from "../../components/NavBar";
-import SectionWrapper from "../../ui/SectionWrapper";
+import { getRoute } from "../../types/routesList";
+import InfoPage from "../../components/InfoPage";
 
 const ErrorPage = () => {
   return (
-    <>
-      <ScrollRestoration />
-      <NavBar />
-      <SectionWrapper>ERROR 404</SectionWrapper>
-      <Footer />
-    </>
+    <InfoPage title="404 - Page Not Found" button="Return to Homepage" buttonTo={getRoute("Home")}>
+      Oops! The page you're looking for doesn't exist.
+    </InfoPage>
   );
 };
 

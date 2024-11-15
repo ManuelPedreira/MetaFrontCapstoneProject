@@ -1,15 +1,15 @@
-import Input from "../../../ui/Input";
-import GridItemWrapper from "../../../ui/GridItemWrapper";
+import Input from "../../../../ui/Input";
+import GridItemWrapper from "../../../../ui/GridItemWrapper";
 import { ReservationDetailsText, ReservationInfoText } from "./ReservationScreen2.styled";
 import { FieldErrors, UseFormGetValues, UseFormRegister } from "react-hook-form";
-import { FormData } from "..";
+import { FormType } from "../../../../types/FormType";
 
 type ReservationScreen2Props = {
   isPhone?: boolean;
   enabledScreen?: boolean;
-  register: UseFormRegister<FormData>;
-  getValues: UseFormGetValues<FormData>;
-  errors: FieldErrors<FormData>;
+  register: UseFormRegister<FormType>;
+  getValues: UseFormGetValues<FormType>;
+  errors: FieldErrors<FormType>;
 };
 
 const ReservationScreen2 = ({
@@ -23,7 +23,7 @@ const ReservationScreen2 = ({
     <>
       {enabledScreen && isPhone ? (
         <ReservationDetailsText>
-          {getValues("hour")}
+          {getValues("hour") ? getValues("hour") : "..."}
           <br />
           {getValues("date").toLocaleDateString("en-US", {
             weekday: "long",
@@ -31,7 +31,10 @@ const ReservationScreen2 = ({
             month: "long",
             day: "numeric",
           })}
-          <br /> {`${getValues("guest")} people, ${getValues("zone")} seating`}
+          <br />{" "}
+          {getValues("guest") && getValues("guest") > 0
+            ? `${getValues("guest")} people, ${getValues("zone")} seating`
+            : `... , ${getValues("zone")} seating`}
         </ReservationDetailsText>
       ) : null}
       <GridItemWrapper
@@ -58,9 +61,9 @@ const ReservationScreen2 = ({
         visible={enabledScreen || !isPhone}
         gridArea="phone"
         children={Input({
-          label: "Phone contact",
+          label: "Phone",
           id: "phoneInput",
-          register: register("phone", { required: true, pattern: /^\+?[1-9][0-9]{7,14}$/ }),
+          register: register("phone", { pattern: /^\+?[1-9][0-9]{7,14}$/ }),
           isError: errors.phone !== undefined,
         })}
       />

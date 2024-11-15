@@ -9,7 +9,8 @@ const seededRandom = function (seed: number) {
 
 type DataType = {
   time: string;
-  guests: number;
+  guest: number;
+  zone: string;
   name: string;
   surname: string;
   phone: string;
@@ -19,7 +20,8 @@ type StoredDataType = { date: string } & DataType;
 type FormDataType = { date: Date } & DataType;
 
 const readData = (date?: Date): StoredDataType[] => {
-  const storedData: StoredDataType[] = JSON.parse(localStorage.getItem("BookingAPIData") ?? "");
+  const jsonData = localStorage.getItem("BookingAPIData");
+  const storedData: StoredDataType[] = jsonData ? JSON.parse(jsonData) : [];
 
   if (date && storedData) {
     const storedFiltratedData = storedData.filter(
@@ -62,7 +64,9 @@ export const fetchAPI = async function (date: Date) {
 };
 
 export const submitAPI = async function (formData: FormDataType) {
+/*   await new Promise((resolve) => setTimeout(resolve, 500)); */
   storeData(formData);
+  console.log(formData);
   return true;
 };
 

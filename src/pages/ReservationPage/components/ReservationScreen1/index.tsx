@@ -1,19 +1,19 @@
-import Calendar from "../../../ui/Calendar";
-import Select from "../../../ui/Select";
-import GridItemWrapper from "../../../ui/GridItemWrapper";
+import Calendar from "../../../../ui/Calendar";
+import Select from "../../../../ui/Select";
+import GridItemWrapper from "../../../../ui/GridItemWrapper";
 import { StyledRadioSelection } from "./ReservationScreeen1.styled";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { FormData } from "..";
+import { FormType } from "../../../../types/FormType";
 
 const guestList = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const hoursList = ["12:00", "13:00", "14:00", "15:00"];
 
 type ReservationScreen1Props = {
   isPhone?: boolean;
   enabledScreen?: boolean;
-  register: UseFormRegister<FormData>;
-  errors?: FieldErrors<FormData>;
+  register: UseFormRegister<FormType>;
+  errors?: FieldErrors<FormType>;
   calendarDefaultValue?: Date;
+  validHours?: string[];
 };
 
 const ReservationScreen1 = ({
@@ -22,6 +22,7 @@ const ReservationScreen1 = ({
   register,
   errors,
   calendarDefaultValue,
+  validHours = [],
 }: ReservationScreen1Props) => {
   return (
     <>
@@ -47,7 +48,7 @@ const ReservationScreen1 = ({
           label="Hour"
           optionList={[
             { value: "", text: "Select" },
-            ...(hoursList.map((hour) => ({ value: hour, text: hour })) ?? []),
+            ...(validHours.map((hour) => ({ value: hour, text: hour })) ?? []),
           ]}
           arialLabel="Select"
           register={register("hour", { required: true })}
