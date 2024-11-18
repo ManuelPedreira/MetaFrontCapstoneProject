@@ -1,5 +1,3 @@
-import Button from "../Button/Button";
-
 import {
   FoodCardBody,
   FoodCardContainer,
@@ -8,6 +6,7 @@ import {
   FoodCardPrice,
   FoodCardTitle,
   FoodCarPicture,
+  StyledButton,
 } from "./FoodCard.styled";
 
 type FoodCardProps = {
@@ -29,7 +28,7 @@ const FoodCard = ({ title, price, image, description, buttonText, onClick }: Foo
           <FoodCardPrice>{price}</FoodCardPrice>
         </FoodCardHeaderContainer>
         <FoodCardDescription>{description}</FoodCardDescription>
-        <Button onClick={onClick} value={buttonText} />
+        <StyledButton onClick={onClick} value={buttonText} />
       </FoodCardBody>
     </FoodCardContainer>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Footer from "../../components/Footer";
-import Button from "../../ui/Button/Button";
+import Button from "../../ui/Button";
 import SectionWrapper from "../../ui/SectionWrapper";
 import { ReservationPageOptions } from ".";
 import { getGridArea } from "./components/ReservationGrids";

@@ -30,6 +30,7 @@ const ReservationPage = () => {
   const [reservationPage, setReservationPage] = useState<ReservationPageOptions>("first");
   const { isPhone } = useIsPhone();
   const [validHours, setValidHours] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const naviage = useNavigate();
 
   const {
@@ -51,12 +52,14 @@ const ReservationPage = () => {
   });
 
   const onSubmit: SubmitHandler<FormType> = (data) => {
+    setIsLoading(true);
+
     sendReservation(data)
       .then(() => {
         naviage("confirm", { state: { reservation: data } });
       })
       .catch()
-      .finally();
+      .finally(()=> {setIsLoading(false)});
   };
 
   if (reservationPage === "last" && isPhone && (errors.hour || errors.guest)) {
@@ -77,7 +80,13 @@ const ReservationPage = () => {
             <BackButton onClick={() => setReservationPage("first")} />
           </BackButtonWrapper>
         ) : null}
-        <HeaderImage src={reservationPage === "first" || !isPhone ? "/images/restauranfood.jpg" : "/images/fish.jpg"} />
+        <HeaderImage
+          src={
+            reservationPage === "first" || !isPhone
+              ? "/images/restauranfood.jpg"
+              : "/images/fish.jpg"
+          }
+        />
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <StyledSection reservationPage={reservationPage}>
@@ -110,7 +119,7 @@ const ReservationPage = () => {
                 value="Continue"
               />
             ) : (
-              <StyledButton value="Send Reservation" type="submit" />
+              <StyledButton value="Send Reservation" type="submit" loading={isLoading} />
             )}
           </StyledSection>
         </form>

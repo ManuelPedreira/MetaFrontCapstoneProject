@@ -2,7 +2,7 @@ import { Link, ScrollRestoration } from "react-router-dom";
 import { InfoPageContainer, InfoPageWrapper, InfoText, InfoTitle } from "./InfoPage.styled";
 import NavBar from "../NavBar";
 import SectionWrapper from "../../ui/SectionWrapper";
-import Button from "../../ui/Button/Button";
+import Button from "../../ui/Button";
 import Footer from "../Footer";
 
 type InfoPageProps = {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../Button";
 
 export const FoodCardContainer = styled.div`
   display: flex;
@@ -60,4 +61,8 @@ export const FoodCardDescription = styled.p`
   font-size: ${({ theme }) => theme.text.card.textFontSize};
   line-height: ${({ theme }) => theme.text.card.lineHeight};
   flex-grow: 1;
+`;
+
+export const StyledButton = styled(Button)`
+  width: 100%;
 `;

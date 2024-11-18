@@ -64,7 +64,7 @@ export const fetchAPI = async function (date: Date) {
 };
 
 export const submitAPI = async function (formData: FormDataType) {
-/*   await new Promise((resolve) => setTimeout(resolve, 500)); */
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   storeData(formData);
   console.log(formData);
   return true;
