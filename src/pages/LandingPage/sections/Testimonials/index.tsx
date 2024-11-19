@@ -1,4 +1,4 @@
-import Testimonial from "../../../ui/Testimonial";
+import Testimonial from "../../../../ui/Testimonial";
 import { TestimonialsTitle, TestimonialsWrapper, TestimonialWrapper } from "./Testimonials.style";
 
 type testimonialType = {

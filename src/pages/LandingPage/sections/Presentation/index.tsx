@@ -1,4 +1,4 @@
-import Button from "../../../ui/Button";
+import Button from "../../../../ui/Button";
 import {
   ImageContainer,
   PresentationContainer,
@@ -8,7 +8,7 @@ import {
   StyledImage,
 } from "./Presentation.styled";
 import { useNavigate } from "react-router-dom";
-import { getRoute } from "../../../types/routesList";
+import { getRoute } from "../../../../types/routesList";
 
 const Presentation = () => {
   const navigate = useNavigate();

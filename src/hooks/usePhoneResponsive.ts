@@ -3,7 +3,7 @@ import theme from "../theme/theme";
 
 const phoneBreak = parseInt(theme.frames.resolution.phoneBreak.minWidth);
 
-const useIsPhone = () => {
+const usePhoneResponsive = () => {
   const [isPhone, setIsPhone] = useState<boolean>(window.innerWidth < phoneBreak);
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const useIsPhone = () => {
   return {isPhone};
 };
 
-export default useIsPhone;
+export default usePhoneResponsive;

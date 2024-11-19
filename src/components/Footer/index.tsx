@@ -9,9 +9,14 @@ import {
 } from "./Footer.styled";
 import logo from "/images/logo-vertical-white.png";
 
-const Footer = ({ className }: { className?: string }) => {
+type FooterType = {
+  className?: string;
+  visible?: boolean;
+};
+
+const Footer = ({ className, visible = true }: FooterType) => {
   return (
-    <FooterWrapper className={className}>
+    <FooterWrapper className={className} $visible={visible}>
       <FooterContainer>
         <FooterColumn>
           <FooterLogo src={logo} />

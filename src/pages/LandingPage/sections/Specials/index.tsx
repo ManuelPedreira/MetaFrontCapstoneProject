@@ -1,4 +1,4 @@
-import FoodCard from "../../../ui/FoodCard";
+import FoodCard from "../../../../ui/FoodCard";
 import { SepcialsTitle, SpecialsCardsContainer, SpecialsContainer } from "./Specials.style";
 
 type specialType = {

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Footer from "../../components/Footer";
 import Button from "../../ui/Button";
 import SectionWrapper from "../../ui/SectionWrapper";
 import { ReservationPageOptions } from ".";
@@ -7,13 +6,8 @@ import { getGridArea } from "./components/ReservationGrids";
 
 export const ReservationWrapper = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
-  min-height: calc(100vh - 54px);
-
-  @media (min-width: ${({ theme }) => theme.frames.resolution.phoneBreak.minWidth}) {
-    min-height: auto;
-  }
+  flex-grow: 1;
 `;
 
 export const HeaderImage = styled.img`
@@ -39,27 +33,32 @@ export const SectionTittle = styled.h1`
 `;
 
 type StyledSectionProps = {
-  reservationPage?: ReservationPageOptions;
+  $reservationPage?: ReservationPageOptions;
 };
 
-export const StyledSection = styled(SectionWrapper)<StyledSectionProps>`
+export const StyledSection = styled(SectionWrapper)`
+  display: flex;
+  flex-grow: 1;
+`;
+
+export const RegistrationForm = styled.form<StyledSectionProps>`
   display: grid;
   width: 100%;
   box-sizing: border-box;
   gap: 1rem;
+  flex-shrink: 1;
 
   grid-template-columns: 1fr 1fr;
-  min-height: calc(100vh - 54px - (100vw * 9 / 16));
-  grid-template-areas: ${({ reservationPage }) => getGridArea(reservationPage)};
+  grid-template-areas: ${({ $reservationPage }) => getGridArea($reservationPage)};
 
   @media (min-width: ${({ theme }) => theme.frames.resolution.phoneBreak.minWidth}) {
     max-width: ${({ theme }) => theme.frames.resolution.desktop};
-    margin: 3rem auto;
+    margin: 2rem auto 3rem auto;
     gap: 1rem 2rem;
 
     min-height: auto;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: 3rem repeat(4, auto) 1rem 4rem 4rem auto; 
+    grid-template-rows: 3rem repeat(4, auto) 1rem 4rem 4rem auto;
     grid-template-areas: ${getGridArea("full")};
     align-items: center;
   }
@@ -67,8 +66,7 @@ export const StyledSection = styled(SectionWrapper)<StyledSectionProps>`
 
 export const BackButtonWrapper = styled.div`
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  margin: 1rem;
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.color.highlight.secondary};
 `;
@@ -77,10 +75,4 @@ export const StyledButton = styled(Button)`
   width: 100%;
   align-self: flex-end;
   grid-area: button;
-`;
-
-export const StyledFooter = styled(Footer)`
-  @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
-    display: none;
-  }
 `;

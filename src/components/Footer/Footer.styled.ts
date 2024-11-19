@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
-export const FooterWrapper = styled.footer`
+type FooterWrapperProps = {
+  $visible: boolean;
+};
+
+export const FooterWrapper = styled.footer<FooterWrapperProps>`
   width: 100%;
   box-sizing: border-box;
   padding: ${({ theme }) => theme.frames.section.padding};
   color: ${({ theme }) => theme.color.highlight.secondary};
   background-color: ${({ theme }) => theme.color.primary.main};
   padding-top: 2rem;
+  display: ${({ $visible }) => ($visible ? "inherit" : "none")};
 `;
 
 export const FooterContainer = styled.div`
@@ -16,12 +21,14 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
+  width: 100%;
 
   @media (max-width: ${({ theme }) => theme.frames.resolution.phoneBreak.maxWidth}) {
     justify-content: space-evenly;
   }
 
-  p,a {
+  p,
+  a {
     white-space: nowrap;
     margin: 0.5rem 0;
     color: ${({ theme }) => theme.color.highlight.secondary};
