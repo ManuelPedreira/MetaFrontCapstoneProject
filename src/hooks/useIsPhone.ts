@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import theme from "../theme/theme";
 
-const phoneBreak = parseInt(theme.frames.resolution.phoneBreak.maxWidth);
+const phoneBreak = parseInt(theme.frames.resolution.phoneBreak.minWidth);
 
 const useIsPhone = () => {
   const [isPhone, setIsPhone] = useState<boolean>(window.innerWidth < phoneBreak);
